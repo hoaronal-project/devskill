@@ -1,0 +1,326 @@
+#pageMessages {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: auto;
+    z-index: 1;
+    font-size: 15px;
+}
+ 
+.alert {
+  position: relative;
+}
+.alert .close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 1em;
+}
+.alert .fa {
+  margin-right:.3em;
+}
+.rating { 
+  border: none;
+  float: left;
+}
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.75em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+  float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+.cc-selector input{
+  margin:0;padding:0;
+  -webkit-appearance:none;
+     -moz-appearance:none;
+          appearance:none;
+}
+
+.cc-selector input:active +.drinkcard-cc{
+  opacity: 1;
+}
+.cc-selector input:checked +.drinkcard-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+}
+.drinkcard-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+            background: rgba(0, 153, 255, 0.3);
+}
+label{margin-left: 20px;}
+#datepicker{width:180px; margin: 0 20px 20px 20px;}
+#datepicker > span:hover{cursor: pointer;}
+.content_resume
+{
+  width: 100%;  padding-left: 300px; position:relative; margin-top: 0px;
+}
+@media only screen and (max-width: 992px){
+  .content_resume{
+      padding-left: 40px;
+  }
+}
+
+@media only screen and (max-width: 480px) and (min-width: 320px){
+  .content_resume{
+      padding-left: 40px;
+  }
+}
+.content_coverletter
+{
+  width: 100%;  padding-left: 300px; position:relative; margin-top: 0px;
+}
+@media only screen and (max-width: 992px){
+  .content_coverletter{
+      padding-left: 40px;
+  }
+}
+
+@media only screen and (max-width: 480px) and (min-width: 320px){
+  .content_coverletter{
+      padding-left: 40px;
+  }
+}
+/*#iframe { pointer-events: none; }*/
+input[name="range"]{
+    -webkit-appearance: none;
+    -moz-apperance: none;
+    border-radius: 6px;
+    height: 6px;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0.5, #0c9dff),
+        color-stop(0.5, #C5C5C5)
+    );
+}
+
+input[name='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background-color: #0c9dff;
+    border: 1px solid #0c9dff;
+    border-radius: 6px;
+    height: 15px;
+    width: 15px;
+}
+.form-select--md{
+  height: 40px;
+  width: 218px;
+  background: #2e353e;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px dashed #2e353e; 
+  font-size: 15px;
+  -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+iframe {
+  display: block;
+  box-sizing: border-box;
+  transform-origin: center top;
+  transition: transform .05s linear;
+  backface-visibility: hidden;
+}
+/* The Modal (background) */
+.onv_modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 122222; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.onv_modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #2e353e;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.8s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  border-radius: 10px 10px 0px 0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* The Close Button */
+.onv_close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: -1%;
+}
+
+.onv_close:hover,
+.onv_close:focus {
+  color: #f15c4c;
+  text-decoration: none;
+  cursor: pointer;
+}
+.onv_modal-header {
+  padding: 5px;
+  background-color: #2e353e;
+  color: white;
+  border-radius: 5px 5px 0px 0px;
+  height: 35px;
+  font-size: 15px;
+}
+
+.onv_modal-body {
+  padding: 0px;
+  font-size: 15px;
+
+}
+.modal-error{
+  margin-top: 10px;
+  color: #e6a914;
+      font-style: italic;
+      font-size: 15px
+}
+.onv_modal-footer {
+  padding: 5px;
+  background-color: #f4f4f4;
+  color: #2e353e;
+  text-align: right;
+}
+.title-item-modal{
+  font-size: 1.5rem;
+  font-weight: 450;
+    line-height: 30px;
+
+}
+.divfloat{
+    float: left;
+}
+
+.optional{
+  color: #8a94a0;
+      font-style: italic;
+      font-size: 15px
+}
+.onv_button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-weight: 500;
+}
+.onv_button-save{
+   background-color: white; 
+    color: rgb(84, 94, 108); 
+    border: 1px solid #4CAF50;
+}
+.onv_button-save:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.onv_button-cancel{
+    background-color: white;
+    color: rgb(84, 94, 108);
+    border: 1px solid #555555;
+}
+.onv_button-cancel:hover {
+    background-color: #555555;
+    color: white;
+}
+.onv_button-delete{
+    background-color: white; 
+    color: rgb(84, 94, 108); 
+    border: 1px solid #f44336;
+}
+.onv_button-delete:hover {
+    background-color: #f44336;
+    color: white;
+}
+.onv_radio{
+    float: right;
+}
+.is-disabled-filed{
+  pointer-events:none;
+  opacity:0.5 !important;
+}
+.is-disabled-save{
+  pointer-events:none;
+  opacity:0.2 !important;
+}
+.is-loading-save{
+  pointer-events:none;
+  opacity:0.5 !important;
+}

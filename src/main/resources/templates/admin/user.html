@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Products</title>
+    <th:block th:include="layout/admin/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(users)}">
+        <h2>All users</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>email</th>
+                <th>password</th>
+                <th>role</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}">Id</td>
+                <td th:text="${user.email}">email</td>
+                <td th:text="${user.password}">password</td>
+                <td th:text="${user.role}">role</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<th:block th:include="layout/admin/footer"></th:block>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/guest/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Liên hệ</title>
+</head>
+<body>
+<section layout:fragment="feature"></section>
+<section layout:fragment="content">
+    <div class="container oi_container_holder_revex">
+        <div class="oi_page_holder_page">
+            <div class="oi_page_title_holder">
+                <h1><span>Contacs</span></h1>
+            </div>
+            <div class="oi_page_content_holder">
+                <div class="row row-fluid mb0">
+                    <div class="col-sm-12">
+                        <img class="img-responsive" th:src="@{/images/A7G_Pk7bZm8-1280x400.jpg}"  alt="A7G_Pk7bZm8" title="A7G_Pk7bZm8">
+                    </div>
+                </div>
+                <div class="row row-fluid p0">
+                    <div class="col-sm-12">
+                        <div class="bg_f6f6f6 p40">
+                            <h1 class="oi_legend">Liên hệ với chúng tôi</h1>
+                            <p>
+                                Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud.
+                            </p>
+                            <p>&nbsp;</p>
+                            <div id="note"></div>
+                            <div class="wpcf7" id="fields">
+                                <form action="javascript:alert('Was send!');" id="ajax-contact-form" method="post" class="wpcf7-form" novalidate>
+                                    <p>
+                                        Your Name (required)<br>
+                                        <span><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span>
+                                    </p>
+                                    <p>
+                                        Your Email (required)<br>
+                                        <span><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false"></span>
+                                    </p>
+                                    <p>
+                                        Subject<br>
+                                        <span><input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false"></span>
+                                    </p>
+                                    <p>
+                                        Your Message<br>
+                                        <span><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"></textarea></span>
+                                    </p>
+                                    <p>
+                                        <input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit">
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section layout:fragment="js">
+    <script type="text/javascript">
+        jQuery(function($) {
+            $(".current-menu-choose3").addClass("current-menu-item");
+        });
+    </script>
+</section>
+</body>
+</html>

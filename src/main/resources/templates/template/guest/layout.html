@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<meta charset="utf-8">
+	<title>Around the world</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" th:href="@{/blog/img/favicon.png}">
+    <!-- Author Meta -->
+    <meta name="author" content="Doan Quang Hoa">
+    <!-- Meta Description -->
+    <meta name="description" content="Trang web chia sẻ kiến thức lập trình">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="Bloglaptrinh">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"/>
+    <link th:href="@{/blog/css/linearicons.css}" rel="stylesheet" media='all'/>
+    <link th:href="@{/blog/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/blog/css/bootstrap.css}" rel="stylesheet" media='all'/>
+    <link th:href="@{/blog/css/magnific-popup.css}" rel="stylesheet" media='all'/>
+    <link th:href="@{/blog/css/nice-select.css}" rel="stylesheet" media='all'/>
+    <link th:href="@{/blog/css/animate.min.css}" rel="stylesheet" media='all'/>
+    <link th:href="@{/blog/css/owl.carousel.css}" rel=main.css"stylesheet" media='all'/>
+    <link th:href="@{/blog/css/jquery-ui.css}" rel="stylesheet" media='all'/>
+    <link th:href="@{/blog/css/main.css}" rel="stylesheet" media='all'/>
+    <link th:href="@{/admin/assets/css/monokai_sublime.css}" rel="stylesheet" media='all'/>
+    <link th:href="@{/admin/assets/css/quill.snow.css}" rel="stylesheet" media='all'/>
+</head>
+<body>
+<section layout:fragment="header">
+
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-9 header-top-left no-padding">
+                        <ul class="link-header">
+                            <li><a href="#" target="_blank">Tạo CV</a></li>
+                            <li><a href="#" target="_blank">Tạo room</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-3 header-top-right no-padding">
+                        <ul>
+                            <li sec:authorize="isAnonymous()"><a href="#" data-toggle="modal" data-target="#staticModal"><span>Đăng nhập</span></a></li>
+                            <li sec:authorize="isAuthenticated()">
+                                <i class="fa fa-life-ring"></i>
+                                <a href="#">
+                                    <span class="navbar__link__toggle">
+                                        <span class="nav-text" id="navbarHelp" sec:authentication="principal.username"></span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span>Đăng xuất</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="logo-wrap">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-lg-4 col-md-4 col-sm-12 logo-left no-padding">
+                        <a th:href="@{/}">
+                            <img width="150" height="150" class="img-fluid" th:src="@{/blog/img/logo111.png}" alt="">
+                            <img >
+                        </a>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12 logo-right no-padding ads-banner">
+                        <img class="img-fluid" th:src="@{/blog/img/banner-ad.jpg}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container main-menu" id="main-menu">
+            <div class="row align-items-center justify-content-between">
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a th:href="@{/}">Home</a></li>
+                        <li><a href="#">Archive</a></li>
+                        <li><a href="#">Category</a></li>
+                        <li class="menu-has-children"><a href="">Post Types</a>
+                            <ul>
+                                <li><a href="#">Standard Post</a></li>
+                                <li><a href="#">Image Post</a></li>
+                                <li><a href="#">Gallery Post</a></li>
+                                <li><a href="#">Video Post</a></li>
+                                <li><a href="#">Audio Post</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="navbar-right">
+                    <form class="Search">
+                        <input type="text" class="form-control Search-box" name="Search-box" id="Search-box" placeholder="Search">
+                        <label for="Search-box" class="Search-box-label">
+                            <span class="lnr lnr-magnifier"></span>
+                        </label>
+                        <span class="Search-close">
+                            <span class="lnr lnr-cross"></span>
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+</section>
+<!--<section layout:fragment="feature">
+    <div th:if="${param.logout}"
+         class="alert alert-info alert-dismissable">
+        <span>You have been logged out.</span>
+    </div>
+</section>-->
+<section layout:fragment="content"></section>
+<footer layout:fragment="footer" class="footer-area section-gap">
+
+    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticModalLabel">Đăng nhập</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="home" th:action="@{/login}" method="post">
+                    <div class="modal-body">
+                        <div class="form-group has-feedback">
+                            <input type="email" class="form-control" name="username"
+                                   placeholder="Email" /> <span
+                                class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="password" class="form-control" name="password"
+                                   placeholder="Password" /> <span
+                                class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div th:if="${param.error}"
+                                     class="alert alert-danger alert-dismissable">
+                                    <p>
+                                        <i class="icon fa fa-ban"></i> <span
+                                            th:text="#{error.login_failed}">Invalid Email and
+                                            Password.</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="footer-bottom row align-items-center">
+            <p class="footer-text m-0 col-lg-8 col-md-12">
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+            <div class="col-lg-4 col-md-12 footer-social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+                <a href="#"><i class="fa fa-behance"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" th:src="@{/blog/js/vendor/jquery-2.2.4.min.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/vendor/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/easing.min.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/hoverIntent.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/superfish.min.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/jquery.ajaxchimp.min.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/jquery.magnific-popup.min.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/mn-accordion.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/jquery-ui.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/jquery.nice-select.min.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/mail-script.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/main.js}"></script>
+<section layout:fragment="js"></section>
+</body>
+</html>

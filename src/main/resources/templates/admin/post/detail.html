@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/guest/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<section layout:fragment="feature"></section>
+<section layout:fragment="content">
+    <div class="container oi_container_holder_Đông Anh">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="oi_post oi_post_one oi_format-image post-109 post type-post status-publish format-image has-post-thumbnail hentry category-lifestyle tag-food tag-music post_format-post-format-image" id="post-109">
+                    <div class="row">
+                        <div class="col-md-12">```
+                            <div class="oi_blog_post_title_holder">
+                                <h2><a class="blog_title_a" href="" th:utext="${item.title}"></a></h2>
+                            </div>
+                            <div class="oi_blog_post_date_holder">
+                                <span class="oi_ddate">April 30, 2015</span>
+                            </div>
+                            <div class="oi_blog_post_content_holder" th:utext="${item.body}"></div>
+                            <div class="oi_blog_post_tags_holder">
+                                <a href="" rel="tag" th:text="${#calendars.format(#calendars.createNow(), 'dd MMM yyyy HH:mm')}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="oi_blog_sidebar_holder">
+                    <div class="oi_blog_widget">
+                        <h6 class="io_blog_widget_title"><span>Lost Something?</span></h6>
+                        <form method="get" id="searchform" action="#">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="hidden" name="post_type" value="post"/><input type="text" value="Something " name="s" id="s" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="oi_blog_widget">
+                        <h6 class="io_blog_widget_title"><span>Popular Posts</span></h6>
+                        <div class="oi_popular_widget_post_holder">
+                            <div class="oi_popular_widget_post_image">
+                                <a class="oi_image_link" href="">
+                                    <img class="img-responsive" th:src="@{/images/photo-1416339306562-f3d12fefd36f-400x400.jpg}" alt="Fanny pack nostrud"/>
+                                </a>
+                            </div>
+                            <div class="oi_popular_widget_post_content">
+                                <div class="oi_popular_widget_post_content_date">
+                                    April 30, 2015
+                                </div>
+                                <h5 class="oi_blog_post_title"><a href="">Fanny pack nostrud </a></h5>
+                                <div class="oi_popular_widget_post_content_date">
+                                    <a href="">5 responses</a>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                        <div class="oi_popular_widget_post_holder">
+                            <div class="oi_popular_widget_post_image">
+                                <a class="oi_image_link" href="">
+                                    <img class="img-responsive" th:src="@{/images/A7G_Pk7bZm8-400x400.jpg}" alt="VACATION!"/>
+                                </a>
+                            </div>
+                            <div class="oi_popular_widget_post_content">
+                                <div class="oi_popular_widget_post_content_date">
+                                    May 30, 2015
+                                </div>
+                                <h5 class="oi_blog_post_title"><a href="">VACATION! </a></h5>
+                                <div class="oi_popular_widget_post_content_date">
+                                    <a href="">4 responses</a>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                        <div class="oi_popular_widget_post_holder">
+                            <div class="oi_popular_widget_post_image">
+                                <a class="oi_image_link" href="">
+                                    <img class="img-responsive" th:src="@{/images/rm6AZ_cDIL0-400x400.jpg}" alt="Photos from my trip"/>
+                                </a>
+                            </div>
+                            <div class="oi_popular_widget_post_content">
+                                <div class="oi_popular_widget_post_content_date">
+                                    April 30, 2015
+                                </div>
+                                <h5 class="oi_blog_post_title"><a href="">Photos from my trip </a></h5>
+                                <div class="oi_popular_widget_post_content_date">
+                                    <a href="">3 responses</a>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div class="oi_blog_widget">
+                        <h6 class="io_blog_widget_title"><span>Categories</span></h6>
+                        <ul>
+                            <li class="cat-item cat-item-2"><a href="">Design</a>
+                            </li>
+                            <li class="cat-item cat-item-3"><a href="">Lessons</a>
+                            </li>
+                            <li class="cat-item cat-item-4"><a href="">Lifestyle</a>
+                            </li>
+                            <li class="cat-item cat-item-5"><a href="">Music</a>
+                            </li>
+                            <li class="cat-item cat-item-6"><a href="">Travel</a>
+                            </li>
+                            <li class="cat-item cat-item-7"><a href="">Video</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="oi_blog_widget">
+                        <h6 class="io_blog_widget_title"><span>Calendar</span></h6>
+                        <div id="calendar_wrap">
+                            <table id="wp-calendar">
+                                <caption>July 2015</caption>
+                                <thead>
+                                <tr>
+                                    <th scope="col" title="Monday">M</th>
+                                    <th scope="col" title="Tuesday">T</th>
+                                    <th scope="col" title="Wednesday">W</th>
+                                    <th scope="col" title="Thursday">T</th>
+                                    <th scope="col" title="Friday">F</th>
+                                    <th scope="col" title="Saturday">S</th>
+                                    <th scope="col" title="Sunday">S</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="3" id="prev">
+                                        <a href="#">&laquo; May</a></td>
+                                    <td class="pad">&nbsp;</td>
+                                    <td colspan="3" id="next" class="pad">&nbsp;</td>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                <tr>
+                                    <td colspan="2" class="pad">&nbsp;</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td id="today">4</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>11</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td>14</td>
+                                    <td>15</td>
+                                    <td>16</td>
+                                    <td>17</td>
+                                    <td>18</td>
+                                    <td>19</td>
+                                </tr>
+                                <tr>
+                                    <td>20</td>
+                                    <td>21</td>
+                                    <td>22</td>
+                                    <td>23</td>
+                                    <td>24</td>
+                                    <td>25</td>
+                                    <td>26</td>
+                                </tr>
+                                <tr>
+                                    <td>27</td>
+                                    <td>28</td>
+                                    <td>29</td>
+                                    <td>30</td>
+                                    <td>31</td>
+                                    <td class="pad" colspan="2">&nbsp;</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="oi_blog_widget">
+                        <h6 class="io_blog_widget_title"><span>Recent Comments</span></h6>
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div class="oi_blog_widget">
+                        <h6 class="io_blog_widget_title"><span>Facebook</span></h6>
+                        <div class="textwidget">
+                            <div class="cff-wrapper">
+                                <div id="cff" data-char="" >
+                                    <div class="cff-item cff-photo-post author-envato" id="cff_80655071208_10153529446776209" style="border-bottom: 0px solid #fff;">
+                                        <div class="cff-author">
+                                            <a href="https://www.facebook.com/quanghoa93" target="_blank" rel="nofollow" >
+                                                <div class="cff-author-text">
+                                                    <p class="cff-page-name cff-author-date">Quang Hòa</p>
+                                                </div>
+                                                <div class="cff-author-img">
+                                                    <img src="https://graph.facebook.com/80655071208/picture?type=square" width=40 height=40>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cff-clear">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oi_blog_widget">
+                        <h6 class="io_blog_widget_title"><span>Advertisement</span></h6>
+                        <div class="textwidget">
+                            <img th:src="@{/images/44a708f9b89868b964e7afc5f4e61e96.png}" alt=""/><br>
+                            <br>
+                            <img th:src="@{/images/46131a01e1641f7b967056b250bc537b.png}" alt=""/>
+                        </div>
+                    </div>
+                    <div class="oi_blog_widget">
+                        <h6 class="io_blog_widget_title"><span>Tags</span></h6>
+                        <div class="tagcloud">
+                            <a href='' class='tag-link-8' title='3 topics' style='font-size: 15.636363636364pt;'>Spring</a> <a href='' class='tag-link-9' title='2 topics' style='font-size: 8pt;'>Spring Boot</a> <a href='' class='tag-link-10' title='3 topics' style='font-size: 15.636363636364pt;'>Hibernate</a> <a href='' class='tag-link-11' title='3 topics' style='font-size: 15.636363636364pt;'>JSF</a> <a href='' class='tag-link-12' title='4 topics' style='font-size: 22pt;'>Struts</a> <a href='' class='tag-link-13' title='3 topics' style='font-size: 15.636363636364pt;'>Mybatis</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
