@@ -7,8 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.validator.constraints.Email;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -30,6 +30,6 @@ public class UserCreateForm implements Serializable {
 
     private String reLoginPassword;
 
-    @Email(regexp = Constants.EMAIL_PATTERN, message = "Email không đúng định dạng!")
+    @Email(regexp = Constants.Pattern.EMAIL_PATTERN, message = "Email không đúng định dạng!")
     private String email;
 }

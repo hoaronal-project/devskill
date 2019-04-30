@@ -1,8 +1,8 @@
 package com.techblog.web.controller.admin.post;
 
 import com.techblog.service.post.PostService;
-import com.techblog.web.controller.AbstractBaseController;
 import com.techblog.model.PostCreateForm;
+import com.techblog.web.controller.AbstractController;
 import com.techblog.web.support.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("admin_")
-public class PostCreateController extends AbstractBaseController {
+public class PostCreateController extends AbstractController {
 
     @Autowired
     private PostService postService;

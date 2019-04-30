@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -12,9 +14,6 @@ public class ErrorHandlingController  implements ErrorController {
 
         @GetMapping(value = "/error")
         public String handleError(Model model, HttpServletRequest request) {
-
-                //Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-
                 String errorMsg = "";
                 int httpErrorCode = getErrorCode(request);
 
@@ -51,6 +50,6 @@ public class ErrorHandlingController  implements ErrorController {
 
         private int getErrorCode(HttpServletRequest httpRequest) {
                 return (Integer) httpRequest
-                        .getAttribute("javax.servlet.error.status_code");
+                        .getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         }
 }
