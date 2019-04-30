@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,7 +26,7 @@ public class PostCreateController extends AbstractController {
     @Autowired
     private PostService postService;
 
-    @PostMapping("post/create")
+    @PutMapping("post/create")
     public ResponseEntity<Response> newPost(@RequestBody @Valid PostCreateForm postCreateForm,
                                             BindingResult bindingResult, Model model) throws IOException {
         Map<String, String> errors = null;

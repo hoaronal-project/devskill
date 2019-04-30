@@ -12,6 +12,8 @@ import javax.validation.constraints.NotBlank;
 import lombok.ToString;
 import org.springframework.core.convert.converter.Converter;
 
+import java.util.List;
+
 @Data
 @ToString
 @EqualsAndHashCode
@@ -31,6 +33,8 @@ public class PostCreateForm implements Converter<PostCreateForm, Post> {
     private String createdAt;
 
     private String updatedAt;
+
+    private List<String> tags;
 
     @NotBlank(message = "Nội dung bài viết không được để trống!")
     private String body;

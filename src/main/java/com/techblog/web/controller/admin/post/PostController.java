@@ -47,12 +47,4 @@ public class PostController {
         return "admin/post/create";
     }
 
-    @PutMapping("post/create")
-    public ResponseEntity<CustomResponse> createPost(@RequestBody Post post) throws IOException {
-        CustomResponse customResponse = new CustomResponse();
-        post = postService.add(post);
-        customResponse.setResultCode(Constants.ResultCode.SUCCESS);
-        return new ResponseEntity<>(customResponse, HttpStatus.OK);
-    }
-
 }
