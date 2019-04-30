@@ -122,10 +122,13 @@
 <footer layout:fragment="footer" class="footer-area section-gap">
 
     <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
-        <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticModalLabel">Đăng nhập</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <form action="home" th:action="@{/login}" method="post">
                     <div class="modal-body">
@@ -138,6 +141,14 @@
                             <input type="password" class="form-control" name="password"
                                    placeholder="Password" /> <span
                                 class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Lưu mật khẩu
+                            </label>
+                            <label class="pull-right">
+                                <a>Quên mật khẩu</a>
+                            </label>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
@@ -153,9 +164,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                </div>
+                        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                    </div>
                 </form>
             </div>
         </div>
