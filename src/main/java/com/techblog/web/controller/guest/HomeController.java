@@ -4,6 +4,7 @@ import com.techblog.domain.Post;
 import com.techblog.model.PostSearchRequest;
 import com.techblog.service.post.PostService;
 import com.techblog.service.user.UserService;
+import com.techblog.web.controller.blog.AbstractBlogController;
 import com.techblog.web.support.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class HomeController {
+public class HomeController extends AbstractBlogController {
 
     private final UserService userService;
 
