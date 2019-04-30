@@ -3255,3 +3255,7 @@ div.thumbnail_container .overlay-bg {
 .footer-area .footer-bottom .footer-social a:hover {
   background: #0A1223;
 }
+
+.nav-icon .fa-circle {
+  color: #fff !important;
+}
