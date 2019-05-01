@@ -1449,67 +1449,6 @@ header .form-inline {
 .buttons button {
   margin: 2px 0; }
 
-/* Ribons */
-.corner-ribon {
-  text-align: center;
-  width: 71px;
-  height: 71px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  font-size: 20px; }
-
-.corner-ribon i {
-  padding: 10px 0 0 35px;
-  color: #fff; }
-
-.black-ribon {
-  background: url("../../images/twitter_corner_black.png") no-repeat; }
-
-.blue-ribon {
-  background: url("../../images/twitter_corner_blue.png") no-repeat; }
-
-.twt-feed .wtt-mark {
-  color: rgba(255, 255, 255, 0.15);
-  font-size: 160px;
-  position: absolute;
-  top: 10px;
-  left: 40%; }
-
-.twt-feed {
-  -webkit-border-radius: 4px 4px 0 0;
-  color: #FFFFFF;
-  padding: 40px 10px 10px;
-  position: relative;
-  min-height: 170px; }
-
-.weather-category {
-  padding: 15px 0;
-  color: #74829C; }
-  .weather-category ul li {
-    width: 32%;
-    text-align: center;
-    border-right: 1px solid #e6e6e6;
-    display: inline-block; }
-
-.twt-feed.blue-bg {
-  background: #58C9F3; }
-
-.twt-category {
-  display: inline-block;
-  margin-bottom: 11px;
-  margin-top: 10px;
-  width: 100%; }
-  .twt-category ul li {
-    color: #bdbdbd;
-    font-size: 13px; }
-
-.twt-footer {
-  padding: 12px 15px; }
-
-.twt-footer, .twt-footer a {
-  color: #d2d2d2; }
-
 /* Button Reset */
 .btn, .button {
   display: inline-block;
@@ -2254,4 +2193,3 @@ header .form-inline {
 .closebtn:hover {
   color: black;
 }
-/*# sourceMappingURL=style.css.map */
