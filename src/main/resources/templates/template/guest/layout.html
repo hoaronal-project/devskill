@@ -48,14 +48,12 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-3 header-top-right no-padding">
                         <ul>
                             <li sec:authorize="isAnonymous()"><a data-toggle="modal" data-target="#staticModal"><span>Đăng nhập</span></a></li>
-                            <li sec:authorize="isAuthenticated()">
+                            <li class="menu-has-children" sec:authorize="isAuthenticated()">
                                 <i class="fa-stack nav-icon">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-user fa-stack-1x"></i>
                                 </i>
-                                <span class="nav-text" id="navbarHelp" sec:authentication="principal.username"></span>
-                            </li>
-                            <li sec:authorize="isAuthenticated()">
+                                <span sec:authentication="principal.username"></span>
                                 <a th:href="@{/logout}" title="Đăng xuất"><i class="fa fa-sign-out fa-fw"></i></a>
                             </li>
                         </ul>
@@ -85,7 +83,7 @@
                         <li class="menu-active"><a th:href="@{/}">Home</a></li>
                         <li><a href="#">Archive</a></li>
                         <li><a href="#">Category</a></li>
-                        <li class="menu-has-children"><a href="">Post Types</a>
+                        <li class="menu-has-children"><a>Post Types</a>
                             <ul>
                                 <li><a href="#">Standard Post</a></li>
                                 <li><a href="#">Image Post</a></li>

@@ -28,6 +28,5 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
         List<Tag> tags = tagService.findAll();
         Constants.TAGS = (List<String>) CollectionUtils.collect(tags,
                 new BeanToPropertyValueTransformer("name"));
-
     }
 }

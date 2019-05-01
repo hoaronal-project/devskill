@@ -19,37 +19,15 @@
     <div class="msgBox"></div>
     <div class="animated fadeIn">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-9">
                 <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <h3 class="text-center">Thêm bài viết</h3>
-                        </div>
-                    </div>
                     <div class="card-body">
-                        <!-- Credit Card -->
                         <div id="pay-invoice">
                             <div class="card-body">
                                 <form action="" method="post" novalidate="novalidate">
                                     <div class="form-group">
                                         <label for="title" class="control-label mb-1">Tiêu đề</label>
                                         <input id="title" name="title" type="text" class="form-control title" placeholder="Tiêu đề" aria-required="true" aria-invalid="false">
-                                    </div>
-                                    <div class="form-group" id="tags">
-                                        <label for="tagSelect" class="control-label mb-1">Tag</label>
-                                        <select id="tagSelect" style="width: 100%" class="tagSelect form-control" multiple>
-                                            <option th:each="item,itrStat : ${tags}" th:value="${item.id}" th:text="${item.name}"></option>
-                                        </select>
-                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
-                                    </div>
-                                    <div class="form-group" id="categories">
-                                        <label for="categorySelect" class="control-label mb-1">Danh mục</label>
-                                        <select id="categorySelect" style="width: 100%" class="categorySelect form-control" multiple>
-                                            <option value=""></option>
-                                            <option value="United States">Quản trị hệ thống</option>
-                                            <option value="United Kingdom">Lập trình</option>
-                                        </select>
-                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label mb-1">Nội dung</label>
@@ -58,16 +36,57 @@
                                         </div>
                                         <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
                                     </div>
-                                    <div class="form-group"></div>
-                                    <div class="row">
-                                        <a id="savePost" class="btn btn-lg btn-primary btn-block" style="color: white">
-                                            <i class="fa fa-dot-circle-o"></i>
-                                            <span id="post-button-amount">Thêm bài viết</span>
-                                            <span id="post-button-sending" style="display:none;">Sending…</span>
-                                        </a>
-                                    </div>
                                 </form>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group" id="release">
+                            <label for="releaseSelect" class="control-label mb-1">Xuất bản</label>
+                            <select id="releaseSelect"  data-placeholder="Trạng thái" class="standardSelect" tabindex="1">
+                                <option value="0">Public</option>
+                                <option value="1">Draft</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-outline-secondary btn-sm">Bản nháp</button>
+                        <button type="button" id="savePost" class="btn btn-outline-primary btn-sm">Lưu</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group" id="categories">
+                            <label for="categorySelect" class="control-label mb-1">Danh mục</label>
+                            <select id="categorySelect" style="width: 100%" class="categorySelect form-control" multiple>
+                                <option value=""></option>
+                                <option value="United States">Quản trị hệ thống</option>
+                                <option value="United Kingdom">Lập trình</option>
+                            </select>
+                            <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group" id="tags">
+                            <label for="tagSelect" class="control-label mb-1">Tag</label>
+                            <select id="tagSelect" style="width: 100%" class="tagSelect form-control" multiple>
+                                <option th:each="item,itrStat : ${tags}" th:value="${item.id}" th:text="${item.name}"></option>
+                            </select>
+                            <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group" id="thumbnail">
+                            <label for="tagSelect" class="control-label mb-1">Thumbnail</label>
+
+                            <img class="card-img-top" th:src="@{/admin/images/placeholder.png}" alt="Thumbnail"/>
+                            <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                         </div>
                     </div>
                 </div>
@@ -97,7 +116,7 @@
                 var categories = [];
                 $( "#tags .chosen-choices .search-choice" ).each(function( index ) {
                     if($(this).text() != undefined && $(this).text() != ''){
-                        tags.push($(this).value());
+                        tags.push($(this).text());
                     }
                 });
 
@@ -241,6 +260,12 @@
                 $('.categorySelect').select2({
                     placeholder: "-- Chọn danh mục --",
                     maximumInputLength: 20
+                });
+
+                jQuery(".standardSelect").chosen({
+                    disable_search_threshold: 10,
+                    no_results_text: "Oops, nothing found!",
+                    width: "100%"
                 });
             });
         </script>
