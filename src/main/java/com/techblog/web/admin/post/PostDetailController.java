@@ -1,4 +1,4 @@
-package com.techblog.web.controller.admin.post;
+package com.techblog.web.admin.post;
 
 
 import org.springframework.stereotype.Controller;

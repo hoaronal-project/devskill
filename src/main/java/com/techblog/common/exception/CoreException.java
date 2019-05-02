@@ -14,6 +14,22 @@ public class CoreException extends RuntimeException {
         this.apiStatus = apiStatus;
     }
 
+    public CoreException() {
+        super();
+    }
+
+    public CoreException(Throwable cause) {
+        super(cause);
+    }
+
+    public CoreException(String message) {
+        super(message);
+    }
+
+    public CoreException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
     public CoreException(String message, HttpStatus apiStatus) {
         super(message);
         this.apiStatus = apiStatus;
@@ -22,10 +38,6 @@ public class CoreException extends RuntimeException {
     public CoreException(HttpStatus apiStatus, List<ParamError> data) {
         this(apiStatus);
         this.data = data;
-    }
-
-    public CoreException(Throwable cause) {
-        super(cause);
     }
 
     public HttpStatus getApiStatus() {

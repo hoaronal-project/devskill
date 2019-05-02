@@ -1,4 +1,4 @@
-package com.techblog.web.controller.guest;
+package com.techblog.web.guest;
 
 import com.techblog.model.PdfFileRequest;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.nio.file.Files;
-import java.util.Base64;
-import java.util.zip.ZipFile;
 
 @Controller
 public class CvController {

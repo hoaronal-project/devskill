@@ -1,4 +1,4 @@
-package com.techblog.web.controller.admin;
+package com.techblog.web.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

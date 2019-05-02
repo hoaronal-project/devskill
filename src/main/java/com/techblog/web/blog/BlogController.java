@@ -1,6 +1,6 @@
-package com.techblog.web.controller.blog;
+package com.techblog.web.blog;
 
-import com.techblog.web.controller.AbstractBlogController;
+import com.techblog.web.AbstractBlogController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

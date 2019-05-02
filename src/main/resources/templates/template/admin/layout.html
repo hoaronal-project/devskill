@@ -55,17 +55,17 @@
 						</li>
 						<h3 class="menu-title">UI elements</h3>
 						<li class="menu-item-has-children dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Quản lí bài viết</a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Post management</a>
 							<ul class="sub-menu children dropdown-menu">
-								<li><i class="fa fa-puzzle-piece"></i><a th:href="@{/admin_/posts}" >Danh sách</a></li>
-								<li><i class="fa fa-id-badge"></i><a th:href="@{/admin_/post/new}" >Thêm mới</a></li>
+								<li><i class="fa fa-puzzle-piece"></i><a th:href="@{/admin_/posts}" >List post</a></li>
+								<li><i class="fa fa-id-badge"></i><a th:href="@{/admin_/post-create}" >Create post</a></li>
 							</ul>
 						</li>
 						<li class="menu-item-has-children dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tags"></i>Tags management</a>
 							<ul class="sub-menu children dropdown-menu">
-								<li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
-								<li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
+								<li><i class="fa fa-table"></i><a th:href="@{/admin_/tags}" >List tag</a></li>
+								<li><i class="fa fa-table"></i><a th:href="@{/admin_/tag-create}" >Create tag</a></li>
 							</ul>
 						</li>
 						<li class="menu-item-has-children dropdown">

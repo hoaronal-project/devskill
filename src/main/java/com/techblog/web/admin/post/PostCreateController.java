@@ -1,8 +1,8 @@
-package com.techblog.web.controller.admin.post;
+package com.techblog.web.admin.post;
 
 import com.techblog.service.post.PostService;
 import com.techblog.model.PostCreateForm;
-import com.techblog.web.controller.AbstractController;
+import com.techblog.web.AbstractController;
 import com.techblog.web.support.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +26,8 @@ public class PostCreateController extends AbstractController {
     @Autowired
     private PostService postService;
 
-    @PutMapping("post/create")
-    public ResponseEntity<Response> newPost(@RequestBody @Valid PostCreateForm postCreateForm,
+    @PutMapping("post")
+    public ResponseEntity<Response> newPost(@RequestBody @Valid PostCreateForm form,
                                             BindingResult bindingResult, Model model) throws IOException {
         Map<String, String> errors = null;
         if(bindingResult.hasErrors()){
@@ -35,9 +35,9 @@ public class PostCreateController extends AbstractController {
                     .collect(
                             Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
                     );
-            return responseUtil.errorResponse(postCreateForm, errors);
+            return responseUtil.errorResponse(form, errors);
         }
-        return responseUtil.successResponse(postService.add(postCreateForm.convert(postCreateForm)), errors);
+        return responseUtil.successResponse(postService.add(form.convert(form)), errors);
     }
 
 }

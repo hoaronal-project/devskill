@@ -1,4 +1,4 @@
-package com.techblog.web.controller.guest;
+package com.techblog.web.guest;
 
 import org.springframework.stereotype.Controller;
 

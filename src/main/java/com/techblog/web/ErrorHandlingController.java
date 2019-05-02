@@ -1,4 +1,4 @@
-package com.techblog.web.controller;
+package com.techblog.web;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;

@@ -8,6 +8,7 @@
 <body>
 <section layout:fragment="content">
     <div class="site-main-container">
+        <link th:href="@{/blog/css/tag-style.css}" rel="stylesheet" media='all'/>
         <!-- Start latest-post Area -->
         <section class="latest-post-area pb-120">
             <div class="container no-padding">
@@ -154,16 +155,13 @@
                             </div>
                             <div class="single-sidebar-widget social-network-widget">
                                 <h6 class="title">Tags</h6>
-                                  <a href="/vi/tag/sdsdsdsd" class="wr-tag"><span class="label label-default"><i class="fa fa-tags"></i> <span>sdsdsdsd</span></span></a>
-                                <ul class="social-list">
-                                    <li class="d-flex justify-content-between align-items-center fb" th:each="item,itrStat : ${tags}">
-                                        <div class="icons d-flex flex-row align-items-center">
-                                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                                            <p>983 Likes</p>
-                                        </div>
-                                        <a href="#" th:utext="${item}">Like our page</a>
-                                    </li>
-                                </ul>
+                                <div class="single-list flex-row d-flex">
+                                    <ul class="tags">
+                                        <li th:each="item,itrStat : ${tags}">
+                                            <a class="tag" th:utext="${item}"></a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

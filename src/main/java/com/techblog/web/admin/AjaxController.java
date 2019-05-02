@@ -1,4 +1,4 @@
-package com.techblog.web.controller.admin;
+package com.techblog.web.admin;
 
 import com.techblog.common.utils.CoreResponse;
 import com.techblog.domain.DataSet;

@@ -1,4 +1,4 @@
-package com.techblog.web.controller.admin.user;
+package com.techblog.web.admin.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
