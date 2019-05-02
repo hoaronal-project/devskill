@@ -3259,3 +3259,27 @@ div.thumbnail_container .overlay-bg {
 .nav-icon .fa-circle {
   color: #fff !important;
 }
+
+.label-default {
+    background-color: #f3f0f0;
+    color: #565656;
+    border: 1px solid #ccc;
+}
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+a.wr-tag:hover {
+    text-decoration: none;
+    opacity: .7
+}
