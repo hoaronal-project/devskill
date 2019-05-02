@@ -76,13 +76,4 @@ public class CvController {
             throw new RuntimeException("Error occurred when creating PDF file", ex);
         }
     }
-
-    public static void main(String[] args) {
-        try (InputStream fileInputStream = new ByteArrayInputStream(Base64.getDecoder().decode(""));
-             Reader reader = new InputStreamReader(fileInputStream)) {
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

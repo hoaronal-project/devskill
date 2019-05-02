@@ -62,5 +62,5 @@ spring:
 
 logging:
   level:
-    org.springframework.web: ERROR
+    org.springframework.web: INFO
     com.techblog: DEBUG
