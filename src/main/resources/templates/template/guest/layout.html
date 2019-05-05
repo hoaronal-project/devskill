@@ -129,43 +129,75 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="home" th:action="@{/login}" method="post">
-                    <div class="modal-body">
-                        <div class="form-group has-feedback">
-                            <input type="email" class="form-control" name="username"
-                                   placeholder="Email" /> <span
-                                class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                            <input type="password" class="form-control" name="password"
-                                   placeholder="Password" /> <span
-                                class="glyphicon glyphicon-lock form-control-feedback"></span>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Lưu mật khẩu
-                            </label>
-                            <label class="pull-right">
-                                <a>Quên mật khẩu</a>
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div th:if="${param.error}"
-                                     class="alert alert-danger alert-dismissable">
-                                    <p>
-                                        <i class="icon fa fa-ban"></i> <span
-                                            th:text="#{error.login_failed}">Invalid Email and
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 ">
+                            <nav>
+                                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+                                </div>
+                            </nav>
+                            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                    <form action="home" th:action="@{/login}" method="post">
+                                        <div class="modal-body">
+                                            <div class="form-group has-feedback">
+                                                <label class="control-label" for="username">Tên truy cập hoặc email</label>
+                                                <input type="email" class="form-control" id="username" name="username" placeholder="Email" />
+                                                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                            </div>
+                                            <div class="form-group has-feedback">
+                                                <label class="control-label" for="password">Mật khẩu</label>
+                                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+                                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> Lưu mật khẩu
+                                                </label>
+                                                <label class="pull-right">
+                                                    <a>Quên mật khẩu</a>
+                                                </label>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div th:if="${param.error}"
+                                                         class="alert alert-danger alert-dismissable">
+                                                        <p>
+                                                            <i class="icon fa fa-ban"></i> <span
+                                                                th:text="#{error.login_failed}">Invalid Email and
                                             Password.</span>
-                                    </p>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                    <form id="h852514w1" action="/user/auth/login" method="post">
+                                        <div class="form-group field-register-email required">
+                                            <label class="control-label" for="register-email">Email</label>
+                                            <input type="email" id="register-email" class="form-control" name="Invite[email]" placeholder="email" aria-required="true">
+                                            <div class="help-block"></div>
+                                        </div><hr>
+                                        <a href="#" class="btn btn-primary">Register</a>
+
+                                    </form>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                    </div>
-                </form>
+                </div>
+            </div>
+        </div>
+
+
             </div>
         </div>
     </div>
