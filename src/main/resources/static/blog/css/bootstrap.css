@@ -207,7 +207,6 @@ a:hover {
 }
 
 a:not([href]):not([tabindex]) {
-  color: inherit;
   text-decoration: none;
 }
 
@@ -4925,6 +4924,19 @@ button.close {
 
 .modal-backdrop.show {
   opacity: 0.5;
+}
+
+.modal-header-login {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-right: 1rem;
+}
+
+.modal-header-login .close {
+  padding: 1rem;
+  margin: -1rem -1rem -1rem auto;
 }
 
 .modal-header {

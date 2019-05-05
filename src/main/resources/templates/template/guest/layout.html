@@ -3,11 +3,11 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-	<meta charset="utf-8">
-	<title>Around the world</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Around the world</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="shortcut icon" th:href="@{/blog/img/favicon.png}">
     <!-- Author Meta -->
@@ -34,7 +34,18 @@
 </head>
 <body>
 <section layout:fragment="header">
-
+    <style type="text/css">
+        /* Below tabs mode */
+        .nav-tabs > li {
+            border-top: 4px solid transparent;
+            float: none !important;
+            display: inline-block !important;
+            zoom: 1 !important;
+        }
+        .nav-tabs {
+            text-align: center !important;
+        }
+    </style>
     <header>
         <div class="header-top">
             <div class="container">
@@ -47,7 +58,8 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-3 header-top-right no-padding">
                         <ul>
-                            <li sec:authorize="isAnonymous()"><a data-toggle="modal" data-target="#staticModal"><span>Đăng nhập</span></a></li>
+                            <li sec:authorize="isAnonymous()"><a data-toggle="modal" data-target="#staticModal"><span>Đăng nhập</span></a>
+                            </li>
                             <li class="menu-has-children" sec:authorize="isAuthenticated()">
                                 <i class="fa-stack nav-icon">
                                     <i class="fa fa-circle fa-stack-2x"></i>
@@ -67,7 +79,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 logo-left no-padding">
                         <a th:href="@{/}">
                             <img width="90" height="90" class="img-fluid" th:src="@{/blog/img/logo111.png}" alt="">
-                            <img >
+                            <img>
                         </a>
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-12 logo-right no-padding ads-banner">
@@ -98,7 +110,8 @@
                 </nav>
                 <div class="navbar-right hidden-xs hidden-sm">
                     <form class="Search">
-                        <input type="text" class="form-control Search-box" name="Search-box" id="Search-box" placeholder="Search">
+                        <input type="text" class="form-control Search-box" name="Search-box" id="Search-box"
+                               placeholder="Search">
                         <label for="Search-box" class="Search-box-label">
                             <span class="lnr lnr-magnifier"></span>
                         </label>
@@ -119,92 +132,98 @@
 </section>-->
 <section layout:fragment="content"></section>
 <footer layout:fragment="footer" class="footer-area section-gap">
-
-    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel"
+         aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticModalLabel">Đăng nhập</h5>
+                <div class="modal-header-login">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 ">
-                            <nav>
-                                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
-                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
-                                </div>
-                            </nav>
-                            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                    <form action="home" th:action="@{/login}" method="post">
-                                        <div class="modal-body">
-                                            <div class="form-group has-feedback">
-                                                <label class="control-label" for="username">Tên truy cập hoặc email</label>
-                                                <input type="email" class="form-control" id="username" name="username" placeholder="Email" />
-                                                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                                            </div>
-                                            <div class="form-group has-feedback">
-                                                <label class="control-label" for="password">Mật khẩu</label>
-                                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
-                                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox"> Lưu mật khẩu
-                                                </label>
-                                                <label class="pull-right">
-                                                    <a>Quên mật khẩu</a>
-                                                </label>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    <div th:if="${param.error}"
-                                                         class="alert alert-danger alert-dismissable">
-                                                        <p>
-                                                            <i class="icon fa fa-ban"></i> <span
-                                                                th:text="#{error.login_failed}">Invalid Email and
-                                            Password.</span>
-                                                        </p>
-                                                    </div>
+                <div class="modal-body">
+                    <div class="tabbable-panel">
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs mb-3 justify-content-center" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
+                                       role="tab" aria-controls="pills-home" aria-selected="true">Đăng nhập</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                                       role="tab" aria-controls="pills-profile" aria-selected="false">Đăng kí</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                     aria-labelledby="pills-home-tab">
+                                    <form th:action="@{/login}" method="post">
+                                        <div class="form-group has-feedback">
+                                            <label class="control-label" for="username">Tên truy cập hoặc
+                                                email</label>
+                                            <input type="email" class="form-control" id="username"
+                                                   name="username"
+                                                   placeholder="Email"/>
+                                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                        </div>
+                                        <div class="form-group has-feedback">
+                                            <label class="control-label" for="password">Mật khẩu</label>
+                                            <input type="password" class="form-control" name="password"
+                                                   id="password"
+                                                   placeholder="Password"/>
+                                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> Lưu mật khẩu
+                                            </label>
+                                            <label class="pull-right">
+                                                <a>Quên mật khẩu</a>
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div th:if="${param.error}"
+                                                     class="alert alert-danger alert-dismissable">
+                                                    <p>
+                                                        <i class="icon fa fa-ban"></i> <span
+                                                            th:text="#{error.login_failed}">Invalid Email and
+                                        Password.</span>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                                        </div>
+                                        <hr/>
+                                        <button type="submit" class="btn btn-primary">Đăng nhập</button>
                                     </form>
                                 </div>
-                                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                    <form id="h852514w1" action="/user/auth/login" method="post">
-                                        <div class="form-group field-register-email required">
-                                            <label class="control-label" for="register-email">Email</label>
-                                            <input type="email" id="register-email" class="form-control" name="Invite[email]" placeholder="email" aria-required="true">
-                                            <div class="help-block"></div>
-                                        </div><hr>
-                                        <a href="#" class="btn btn-primary">Register</a>
-
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                     aria-labelledby="pills-profile-tab">
+                                    <form id="form-register" th:action="@{/register}" method="post">
+                                        <div class="form-group has-feedback">
+                                            <label class="control-label" for="register-email">Tên truy cập hoặc email</label>
+                                            <input type="email" id="register-email" class="form-control"
+                                                   name="Invite[email]"
+                                                   placeholder="email" aria-required="true">
+                                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                        </div>
+                                        <hr/>
+                                        <button class="btn btn-primary">Đăng kí</button>
                                     </form>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-
             </div>
         </div>
     </div>
     <div class="container">
         <div class="footer-bottom row align-items-center">
             <p class="footer-text m-0 col-lg-8 col-md-12">
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                All rights reserved
+            </p>
             <div class="col-lg-4 col-md-12 footer-social">
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
