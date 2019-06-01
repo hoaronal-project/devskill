@@ -7,6 +7,8 @@ public class Constants {
 
     public static List<String> TAGS = new ArrayList<>();
 
+    public static String RESULT_LIST_MAP = "resultListMap";
+
     public class ResultCode {
         public static final int SUCCESS = 1;
         public static final int FAIL = 0;

@@ -11,6 +11,11 @@ public class BlogController extends AbstractBlogController {
 
     @GetMapping
     public String get() {
+
         return "guest/index";
+    }
+
+    public enum ErrorResponse{
+
     }
 }
