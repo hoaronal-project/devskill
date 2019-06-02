@@ -142,6 +142,12 @@
             <artifactId>webmagic-extension</artifactId>
             <version>${webmagic.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.smattme</groupId>
+            <artifactId>mysql-backup4j</artifactId>
+            <version>1.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>

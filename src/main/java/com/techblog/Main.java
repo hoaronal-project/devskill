@@ -1,5 +1,10 @@
 package com.techblog;
 
+import com.smattme.MysqlExportService;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -12,15 +17,17 @@ public class Main {
 
 	private static String RECIPIENT = "hoa9x3@gmail.com";
 
-	public static void main(String[] args) {
-		String from = USER_NAME;
+	public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
+		/*String from = USER_NAME;
 		String pass = PASSWORD;
 		//địa chỉ mail người nhận
 		String[] to = { RECIPIENT };
 		String subject = "Java send mail example";
 		String body = "Welcome to JavaMail!";
 
-		sendFromGMail(from, pass, to, subject, body);
+		sendFromGMail(from, pass, to, subject, body);*/
+
+
 	}
 
 	private static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
