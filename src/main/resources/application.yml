@@ -48,9 +48,8 @@ spring:
       sort:
         sort-parameter: sort
 
-#server:
-#  port: 8080
-#  debug: true
+server:
+  debug: true
 #  http:
 #    port: 8082
 #  ssl:

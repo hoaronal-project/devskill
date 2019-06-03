@@ -142,12 +142,17 @@
             <artifactId>webmagic-extension</artifactId>
             <version>${webmagic.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.smattme</groupId>
             <artifactId>mysql-backup4j</artifactId>
             <version>1.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.1-jre</version>
+        </dependency>
+
     </dependencies>
 
     <build>
