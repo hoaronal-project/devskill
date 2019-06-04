@@ -14,7 +14,9 @@
             <div class="container no-padding">
                 <div class="row">
                     <div class="col-lg-8 post-list">
-                        <!-- Start latest-post Area -->
+                        <div class="col-lg-12 ad-widget-wrap mt-30 mb-30">
+                            <img class="img-fluid" th:src="@{/blog/img/banner-ad.jpg}" alt="">
+                        </div>
                         <div class="latest-post-wrap">
                             <h4 class="cat-title">Bài viết mới</h4>
                             <div class="loop" th:each="item,itrStat : ${listItem}">
@@ -45,43 +47,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End latest-post Area -->
-                        <div class="col-lg-12 ad-widget-wrap mt-30 mb-30">
-                            <img class="img-fluid" th:src="@{/blog/img/banner-ad.jpg}" alt="">
-                        </div>
-                        <div class="relavent-story-post-wrap mt-30">
-                            <h4 class="title">Xem nhiều</h4>
-                            <div class="relavent-story-list-wrap">
-                                <div class="loop" th:each="item,itrStat : ${listMostItem}">
-                                    <div class="single-relavent-post row align-items-center">
-                                    <div class="col-lg-5 post-left">
-                                        <div class="feature-img relative">
-                                            <div class="overlay overlay-bg"></div>
-                                            <img style="height: 200px;width: 300px" class="img-fluid" src='https://image.ibb.co/eO8oq8/default-1.png' alt="">
-                                        </div>
-                                        <ul class="tags">
-                                            <li><a href="#">Lifestyle</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-7 post-right">
-                                        <a th:href="@{'/post/' + ${item.code}}" >
-                                            <h4 th:utext="${item.title}"></h4>
-                                        </a>
-                                        <ul class="meta">
-                                            <span class="oi_ddate"></span>
-                                            <li><a href="#"><span class="lnr lnr-user"></span><span th:utext="${item.createdBy}"></span></a></li>
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>03 April, 2018</a></li>
-                                            <li><a href="#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
-                                        </ul>
-                                        <p class="excert">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-                                        </p>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End relavent-story-post Area -->
                     </div>
                     <div class="col-lg-4">
                         <div class="sidebars-area">

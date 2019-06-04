@@ -1,4 +1,4 @@
-package com.devskill.web.pipeline;
+package com.devskill.crawler.pipeline;
 
 import com.devskill.domain.Post;
 import com.devskill.repository.PostRepository;

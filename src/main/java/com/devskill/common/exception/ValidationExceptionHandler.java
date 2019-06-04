@@ -1,7 +1,7 @@
 package com.devskill.common.exception;
 
 import com.devskill.web.support.Response;
-import com.devskill.common.utils.ResponseUtil;
+import com.devskill.common.utils.ResponseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Autowired
-    private ResponseUtil responseUtil;
+    private ResponseUtils responseUtil;
 
     protected final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 

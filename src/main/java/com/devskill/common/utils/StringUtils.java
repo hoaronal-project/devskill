@@ -3,7 +3,7 @@ package com.devskill.common.utils;
 import java.text.Normalizer;
 import java.util.regex.Pattern;
 
-public class StringUtil {
+public class StringUtils {
 
     public static boolean isEmpty(String str) {
         return str == null || "".equals(str);

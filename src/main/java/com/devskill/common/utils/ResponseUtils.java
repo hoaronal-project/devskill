@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class ResponseUtil {
+public class ResponseUtils {
 
     private Response createResponse(HttpStatus apiStatus, Object data, Map<String, String> errorMessages) {
         return new Response(apiStatus, data, errorMessages);

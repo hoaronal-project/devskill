@@ -16,7 +16,7 @@ import java.util.Properties;
 @RequiredArgsConstructor
 public class BackupDbSchedule {
 
-    @Scheduled(cron = "0 0/1 * 1/1 * ?")
+    @Scheduled(cron = "0 0 23 1/1 * ?")
     public void backup() throws SQLException, IOException, ClassNotFoundException {
         Properties properties = new Properties();
         properties.setProperty(MysqlExportService.DB_NAME, "devskill");

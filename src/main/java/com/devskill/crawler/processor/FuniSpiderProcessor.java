@@ -1,4 +1,4 @@
-package com.devskill.web.processor;
+package com.devskill.crawler.processor;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

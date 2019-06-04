@@ -1,12 +1,9 @@
 package com.devskill.listener;
 
-import com.devskill.common.constant.Constants;
-import com.devskill.common.utils.CacheUtil;
 import com.devskill.domain.Tag;
 import com.devskill.service.tag.TagService;
+import com.google.common.cache.Cache;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
@@ -19,19 +16,18 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
 
     private final TagService tagService;
 
-    public StartedListener(TagService tagService) {
+    private final Cache<Object, Object> fileSystemPersistingCache;
+
+    public StartedListener(TagService tagService, Cache<Object, Object> fileSystemPersistingCache) {
         this.tagService = tagService;
+        this.fileSystemPersistingCache = fileSystemPersistingCache;
     }
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
         log.info("Load data ===========>>>");
-        CacheUtil cacheUtil = new CacheUtil(null, null, false);
-        cacheUtil.generateOTP("aaaaaa");
+        fileSystemPersistingCache.put("tagList", tagService.findAll());
+        List<Tag> tagList = (List<Tag>) fileSystemPersistingCache.getIfPresent("tagList");
 
-
-        List<Tag> tags = tagService.findAll();
-        Constants.TAGS = (List<String>) CollectionUtils.collect(tags,
-                new BeanToPropertyValueTransformer("name"));
     }
 }

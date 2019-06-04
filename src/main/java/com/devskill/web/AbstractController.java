@@ -1,23 +1,33 @@
 package com.devskill.web;
 
-import com.devskill.common.constant.Constants;
-import com.devskill.common.utils.ResponseUtil;
-import com.devskill.web.support.AuthorizedUser;
+import java.util.List;
+
+import com.google.common.cache.Cache;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import com.devskill.domain.Tag;
+import com.devskill.web.support.AuthorizedUser;
+import com.devskill.common.utils.ResponseUtils;
 
 public abstract class AbstractController {
 
     @Autowired
-    protected ResponseUtil responseUtil;
+    protected ResponseUtils responseUtil;
+
+    @Autowired
+    protected Cache<Object, Object> systemCache;
 
     @ModelAttribute
     public void addAttributes(Model model) {
-
-        model.addAttribute("tags", Constants.TAGS);
+        List<Tag> tagList = (List<Tag>) systemCache.getIfPresent("tagList");
+        List<String> tags = (List<String>) CollectionUtils.collect(tagList, new BeanToPropertyValueTransformer("name"));
+        model.addAttribute("tags", tags);
     }
 
     public AuthorizedUser getAuthorizedUser(){

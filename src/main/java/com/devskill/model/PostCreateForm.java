@@ -1,6 +1,6 @@
 package com.devskill.model;
 
-import com.devskill.common.utils.StringUtil;
+import com.devskill.common.utils.StringUtils;
 import com.devskill.domain.Post;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,6 +45,6 @@ public class PostCreateForm implements Converter<PostCreateForm, Post> {
 
     @Override
     public Post convert(PostCreateForm postCreateForm) {
-        return new Post(getTitle(), getLanguage(), Post.Status.PUBLISHED, StringUtil.covertStringToURL(getTitle()), Long.valueOf(getViews()), getCreatedAt(), getUpdatedAt(), getBody());
+        return new Post(getTitle(), getLanguage(), Post.Status.PUBLISHED, StringUtils.covertStringToURL(getTitle()), Long.valueOf(getViews()), getCreatedAt(), getUpdatedAt(), getBody());
     }
 }

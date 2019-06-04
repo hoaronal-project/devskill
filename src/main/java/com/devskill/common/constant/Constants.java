@@ -5,8 +5,6 @@ import java.util.List;
 
 public class Constants {
 
-    public static List<String> TAGS = new ArrayList<>();
-
     public static String RESULT_LIST_MAP = "resultListMap";
 
     public class Pattern {

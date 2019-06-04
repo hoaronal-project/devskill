@@ -1,9 +1,8 @@
-package com.devskill.web.processor;
+package com.devskill.crawler.processor;
 
-import com.devskill.common.utils.StringUtil;
+import com.devskill.common.utils.StringUtils;
 import com.devskill.domain.Post;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
@@ -22,11 +21,11 @@ public class PostProcessor implements PageProcessor {
         for (Selectable s : list) {
             String title = s.xpath("//div[@class='post-title--inline']/h3/a/text()").toString();
             String link = s.xpath("//div[@class='post-title--inline']/h3").links().toString();
-            if (StringUtils.isNotEmpty(title) && StringUtils.isNotEmpty(link)) {
+            if (org.apache.commons.lang3.StringUtils.isNotEmpty(title) && org.apache.commons.lang3.StringUtils.isNotEmpty(link)) {
                 Post news = new Post();
                 news.setTitle(title);
                 news.setBody(title);
-                news.setCode(StringUtil.covertStringToURL(title));
+                news.setCode(StringUtils.covertStringToURL(title));
                 page.putField("newPostViblo" + title, news);
             }
         }

@@ -1,7 +1,7 @@
 package com.devskill.schedule;
 
 import com.devskill.service.crawler.SpiderService;
-import com.devskill.web.processor.NewestProcessor;
+import com.devskill.crawler.processor.NewestProcessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;

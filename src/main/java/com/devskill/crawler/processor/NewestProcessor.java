@@ -1,4 +1,4 @@
-package com.devskill.web.processor;
+package com.devskill.crawler.processor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
-import com.devskill.common.utils.StringUtil;
+import com.devskill.common.utils.StringUtils;
 
 @Component
 @RequiredArgsConstructor
@@ -28,7 +28,7 @@ public class NewestProcessor implements PageProcessor {
     public void process(Page page) {
         if (page.getUrl().regex(list).match()) {
             List<Selectable> list = page.getHtml().xpath("//div[@class='post-feed']/div[@class='post-feed-item']").nodes();
-            Function<Selectable, String> LINK_PROJECTION = x -> StringUtil.covertStringToURL(x.xpath("//div[@class='post-title--inline']/h3").links().toString());
+            Function<Selectable, String> LINK_PROJECTION = x -> StringUtils.covertStringToURL(x.xpath("//div[@class='post-title--inline']/h3").links().toString());
 
             List<String> linkNewPost = convertAll(list, LINK_PROJECTION);
 

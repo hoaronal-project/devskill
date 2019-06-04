@@ -1,13 +1,12 @@
 package com.devskill.web.blog;
 
-import com.devskill.web.AbstractBlogController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/blog")
-public class BlogController extends AbstractBlogController {
+public class BlogController {
 
     @GetMapping
     public String get() {
@@ -15,7 +14,4 @@ public class BlogController extends AbstractBlogController {
         return "guest/index";
     }
 
-    public enum ErrorResponse{
-
-    }
 }

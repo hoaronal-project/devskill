@@ -33,7 +33,6 @@ public class IpUtils {
 		String[] ss = xff.split(",");
 		for (String ip : ss) {
 			ip = ip.trim();
-			// 取第一个合法的IP并返回
 			if (isValidIP(ip)) {
 				return ip;
 			}

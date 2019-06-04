@@ -2,10 +2,14 @@ package com.devskill;
 
 import java.util.Locale;
 
+import com.devskill.common.cache.FileSystemCacheBuilder;
+import com.google.common.cache.Cache;
+import com.google.common.cache.LoadingCache;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
@@ -24,5 +28,15 @@ public class Application {
         return slr;
     }
 
-}
+    @Bean
+    public Cache<Object, Object> cache(){
+        return FileSystemCacheBuilder.newBuilder()
+          .maximumSize(1L)
+          .build();
+    }
 
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}

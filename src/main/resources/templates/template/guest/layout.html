@@ -78,7 +78,7 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-lg-4 col-md-4 col-sm-12 logo-left no-padding">
                         <a th:href="@{/}">
-                            <img width="90" height="90" class="img-fluid" th:src="@{/blog/img/logo111.png}" alt="">
+                            <img width="90" height="90" class="img-fluid" th:src="@{/blog/img/logo.png}" alt="">
                             <img>
                         </a>
                     </div>
@@ -92,20 +92,15 @@
             <div class="row align-items-center justify-content-between">
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a th:href="@{/}">Home</a></li>
-                        <li><a href="#">Archive</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li class="menu-has-children"><a>Post Types</a>
-                            <ul>
-                                <li><a href="#">Standard Post</a></li>
-                                <li><a href="#">Image Post</a></li>
-                                <li><a href="#">Gallery Post</a></li>
-                                <li><a href="#">Video Post</a></li>
-                                <li><a href="#">Audio Post</a></li>
+                        <li th:classappend="${(item.menus != null)} ? menu-has-children : null" th:each="item,itrStat : ${#httpServletRequest.getAttribute('MENU')}">
+                            <a th:utext="${item.code}" th:href="${item.url}"></a>
+
+                            <ul th:if="${not #lists.isEmpty(item.menus)}">
+                                <li th:each="itemChild,itrStats : ${item.menus}">
+                                    <a th:href="${item.url}" th:utext="${itemChild.code}"></a>
+                                </li>
                             </ul>
                         </li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
                     </ul>
                 </nav>
                 <div class="navbar-right hidden-xs hidden-sm">

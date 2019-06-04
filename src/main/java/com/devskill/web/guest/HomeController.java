@@ -1,24 +1,23 @@
 package com.devskill.web.guest;
 
-import com.devskill.common.utils.CacheUtil;
-import com.devskill.domain.Post;
-import com.devskill.model.PostSearchRequest;
-import com.devskill.service.post.PostService;
-import com.devskill.service.user.UserService;
-import com.devskill.web.AbstractController;
-import com.devskill.web.support.Pagination;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.Cache;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.ui.Model;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpServletRequest;
+import com.devskill.domain.Post;
+import com.devskill.web.AbstractController;
+import com.devskill.web.support.Pagination;
+import com.devskill.model.PostSearchRequest;
+import com.devskill.service.post.PostService;
+import com.devskill.service.user.UserService;
 
 @Controller
 public class HomeController extends AbstractController {
@@ -38,15 +37,6 @@ public class HomeController extends AbstractController {
                             @PageableDefault(50) Pageable pageable,
                             Model model,
                             HttpServletRequest servletRequest) {
-        CacheUtil cacheUtil = new CacheUtil(null, null, false);
-        int valueWrapper = cacheUtil.getOtp("aaaaaa");
-        /*Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        AuthorizedUser authorizedUser = null;
-        if (authentication != null && authentication.getPrincipal() instanceof AuthorizedUser) {
-            authorizedUser = (AuthorizedUser) authentication.getPrincipal();
-        }
-        Object o = authentication.getPrincipal();
-        System.out.println(authentication.getPrincipal());*/
         PostSearchRequest request = new PostSearchRequest("vi").withKeyword(keyword);
         Page<Post> posts = postService.getPosts(request, pageable);
         model.addAttribute("keyword", keyword);
@@ -59,8 +49,6 @@ public class HomeController extends AbstractController {
 
     @GetMapping({"/test"})
     public String get(){
-
-
         return "guest/cv/cv-doan-quang-hoa";
     }
 
@@ -78,25 +66,5 @@ public class HomeController extends AbstractController {
             e.printStackTrace();
         }
         return "guest/post/detail";
-    }
-
-    @GetMapping("/lien-he")
-    public String contact(Model model){
-        return "guest/contact";
-    }
-
-    @GetMapping("/gioi-thieu")
-    public String about(Model model){
-        return "guest/about";
-    }
-
-    @GetMapping("chat-box")
-    public String chatbox(Model model){
-        return "index";
-    }
-
-    @GetMapping("chat")
-    public String chat(Model model){
-        return "chat";
     }
 }
