@@ -21,45 +21,45 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-@Transactional(rollbackFor=Exception.class)
+@Transactional(rollbackFor = Exception.class)
 public class AuthorizedUserDetailsService extends SavedRequestAwareAuthenticationSuccessHandler implements UserDetailsService {
-	
-	@Resource
-	private UserRepository userRepository;
-	
-	private static Logger logger = LoggerFactory.getLogger(AuthorizedUserDetailsService.class); 
-	
-	@Override
-	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException, DataAccessException {
-		if (!StringUtils.hasText(username)) {
-			throw new UsernameNotFoundException("Username is empty");
-		}
 
-		User user;
-		if (!username.contains("@")) {
-			user = userRepository.findOneByLoginId(username);
-		} else {
-			user = userRepository.findOneByEmail(username);
-		}
+    @Resource
+    private UserRepository userRepository;
 
-		if (user == null) {
-			throw new UsernameNotFoundException("User ID not existing. [" + username + "]");
-		}
+    private static Logger logger = LoggerFactory.getLogger(AuthorizedUserDetailsService.class);
 
-		return new AuthorizedUser(user);
-	}
-	
-	@Transactional(readOnly=false)
-	@Override
-	public void onAuthenticationSuccess(
-			HttpServletRequest request,
-			HttpServletResponse response,
-			Authentication authentication) throws IOException, ServletException {
-		AuthorizedUser authorizedUser = (AuthorizedUser) authentication.getPrincipal();
-		userRepository.updateLastLoginTime(authorizedUser.getUsername(), new Date());
-		
-		logger.info("\"{}\" logged in. IP: [{}]", authorizedUser.toString(), request.getRemoteAddr());
-		
-		super.onAuthenticationSuccess(request, response, authentication);
-	}
+    @Override
+    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException, DataAccessException {
+        if (!StringUtils.hasText(username)) {
+            throw new UsernameNotFoundException("Username is empty");
+        }
+
+        User user;
+        if (!username.contains("@")) {
+            user = userRepository.findOneByLoginId(username);
+        } else {
+            user = userRepository.findOneByEmail(username).get();
+        }
+
+        if (user == null) {
+            throw new UsernameNotFoundException("User ID not existing. [" + username + "]");
+        }
+
+        return new AuthorizedUser(user);
+    }
+
+    @Override
+    @Transactional
+    public void onAuthenticationSuccess(
+      HttpServletRequest request,
+      HttpServletResponse response,
+      Authentication authentication) throws IOException, ServletException {
+        AuthorizedUser authorizedUser = (AuthorizedUser) authentication.getPrincipal();
+        userRepository.updateLastLoginTime(authorizedUser.getUsername(), new Date());
+
+        logger.info("\"{}\" logged in. IP: [{}]", authorizedUser.toString(), request.getRemoteAddr());
+
+        super.onAuthenticationSuccess(request, response, authentication);
+    }
 }

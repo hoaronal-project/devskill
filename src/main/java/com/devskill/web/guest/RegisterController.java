@@ -25,15 +25,15 @@ public class RegisterController extends AbstractController {
 
     @PostMapping({"/register"})
     @ResponseBody
-    public ResponseEntity<Response>register(@RequestBody UserCreateForm registerForm, BindingResult bindingResult) {
+    public ResponseEntity<Response> register(@RequestBody UserCreateForm userCreateForm, BindingResult bindingResult) {
         Map<String, String> errors = null;
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             errors = bindingResult.getFieldErrors().stream()
               .collect(
                 Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
               );
-            return responseUtil.errorResponse(registerForm, errors);
+            return responseUtil.errorResponse(userCreateForm, errors);
         }
-        return responseUtil.successResponse(userService.add(registerForm), errors);
+        return responseUtil.successResponse(userService.register(userCreateForm), errors);
     }
 }

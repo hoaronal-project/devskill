@@ -30,9 +30,6 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     @Autowired
     private DataSource dataSource;
 
-    @Autowired
-    private UserDetailsService authorizedUserDetailsService;
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -126,12 +123,12 @@ public class SecurityConfiguration implements WebMvcConfigurer {
               .loginPage("/login").permitAll()
               .loginProcessingUrl("/login")
               .defaultSuccessUrl("/")
-              .failureUrl("/?fail")
+              .failureUrl("/login?fail")
               .permitAll()
               .and()
               .logout()
               .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-              .logoutSuccessUrl("/?logout")
+              .logoutSuccessUrl("/login?logout")
               .deleteCookies("my-remember-me-cookie")
               .permitAll()
               .and()
@@ -164,7 +161,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("guest/login");
+        registry.addViewController("/login").setViewName("guest/index");
     }
 }
 

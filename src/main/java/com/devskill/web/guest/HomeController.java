@@ -52,11 +52,6 @@ public class HomeController extends AbstractController {
         return "guest/cv/cv-doan-quang-hoa";
     }
 
-    @GetMapping(value = "login", params = {"failed"})
-    public String loginFailed(){
-        return "guest/index";
-    }
-
     @GetMapping("post/{code}")
     public String newPost(@PathVariable("code") String code, Model model, HttpServletRequest request){
         try {

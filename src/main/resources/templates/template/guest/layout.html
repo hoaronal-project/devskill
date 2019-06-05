@@ -42,6 +42,7 @@
             display: inline-block !important;
             zoom: 1 !important;
         }
+
         .nav-tabs {
             text-align: center !important;
         }
@@ -92,12 +93,13 @@
             <div class="row align-items-center justify-content-between">
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li th:classappend="${(item.menus != null)} ? menu-has-children : null" th:each="item,itrStat : ${#httpServletRequest.getAttribute('MENU')}">
+                        <li th:classappend="${(item.menus != null)} ? menu-has-children : null"
+                            th:each="item,itrStat : ${#httpServletRequest.getAttribute('MENU')}">
                             <a th:utext="${item.code}" th:href="${item.url}"></a>
 
                             <ul th:if="${not #lists.isEmpty(item.menus)}">
                                 <li th:each="itemChild,itrStats : ${item.menus}">
-                                    <a th:href="${item.url}" th:utext="${itemChild.code}"></a>
+                                    <a th:href="${itemChild.url}" th:utext="${itemChild.code}"></a>
                                 </li>
                             </ul>
                         </li>
@@ -196,14 +198,13 @@
                                      aria-labelledby="pills-profile-tab">
                                     <form id="form-register" th:action="@{/register}" method="post">
                                         <div class="form-group has-feedback">
-                                            <label class="control-label" for="register-email">Tên truy cập hoặc email</label>
-                                            <input type="email" id="register-email" class="form-control"
-                                                   name="Invite[email]"
-                                                   placeholder="email" aria-required="true">
+                                            <label class="control-label" for="register-email">Email</label>
+                                            <input type="email" id="register-email" class="form-control" name="email"
+                                                   placeholder="Email" aria-required="true">
                                             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                         </div>
                                         <hr/>
-                                        <button class="btn btn-primary">Đăng kí</button>
+                                        <button class="btn btn-primary" id="btnRegister" type="button">Đăng kí</button>
                                     </form>
                                 </div>
                             </div>
@@ -241,6 +242,7 @@
 <script type="text/javascript" th:src="@{/blog/js/jquery.nice-select.min.js}"></script>
 <script type="text/javascript" th:src="@{/blog/js/mail-script.js}"></script>
 <script type="text/javascript" th:src="@{/blog/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/blog/js/register.js}"></script>
 <section layout:fragment="js"></section>
 </body>
 </html>

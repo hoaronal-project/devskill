@@ -1,4 +1,11 @@
 spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: devfunny123@gmail.com
+    password: Quanghoa1993
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
   flyway:
     enabled: false
 
@@ -6,7 +13,7 @@ spring:
     active: prod
 
   thymeleaf:
-    cache: false
+    cache: true
     encoding: UTF-8
 
   devtools:

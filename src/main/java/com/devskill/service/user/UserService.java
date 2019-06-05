@@ -1,14 +1,13 @@
 package com.devskill.service.user;
 
-import com.devskill.domain.User;
-
 import java.util.List;
+
+import com.devskill.domain.User;
+import com.devskill.model.UserCreateForm;
 
 public interface UserService {
 
-    public User add(User user);
+    User register(UserCreateForm userCreateForm);
 
-    public User getByEmail(String email);
-
-    public List<User> getUsers(int pageNumber, int pageSize);
+    List<User> getUsers(int pageNumber, int pageSize);
 }

@@ -1,15 +1,25 @@
 package com.devskill.web.guest;
 
+import com.devskill.service.email.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
+import java.util.Locale;
+
+/*
 @Controller
 public class SendingController {
-/*
+
     @Autowired
     private EmailService emailService;
 
-    *//* Send HTML mail (simple) *//*
-    @RequestMapping(value = "/sendMailSimple", method = GET)
+    @RequestMapping(value = "/sendMailSimple", method = RequestMethod.GET)
     public String sendSimpleMail(
         @RequestParam("recipientName") final String recipientName,
         @RequestParam("recipientEmail") final String recipientEmail,
@@ -21,8 +31,7 @@ public class SendingController {
 
     }
 
-    *//* Send HTML mail with attachment. *//*
-    @RequestMapping(value = "/sendMailWithAttachment", method = GET)
+    @RequestMapping(value = "/sendMailWithAttachment", method = RequestMethod.GET)
     public String sendMailWithAttachment(
         @RequestParam("recipientName") final String recipientName,
         @RequestParam("recipientEmail") final String recipientEmail,
@@ -37,8 +46,7 @@ public class SendingController {
 
     }
 
-    *//* Send HTML mail with inline image *//*
-    @RequestMapping(value = "/sendMailWithInlineImage", method = GET)
+    @RequestMapping(value = "/sendMailWithInlineImage", method = RequestMethod.GET)
     public String sendMailWithInline(
         @RequestParam("recipientName") final String recipientName,
         @RequestParam("recipientEmail") final String recipientEmail,
@@ -53,8 +61,7 @@ public class SendingController {
 
     }
 
-    *//* Send editable HTML mail *//*
-    @RequestMapping(value = "/sendEditableMail", method = GET)
+    @RequestMapping(value = "/sendEditableMail", method = RequestMethod.GET)
     public String sendMailWithInline(
         @RequestParam("recipientName") final String recipientName,
         @RequestParam("recipientEmail") final String recipientEmail,
@@ -71,5 +78,6 @@ public class SendingController {
     @RequestMapping(value = "/sent", method = RequestMethod.GET)
     public String sent() {
         return "sent";
-    }*/
+    }
 }
+*/

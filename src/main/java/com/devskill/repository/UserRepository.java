@@ -13,6 +13,7 @@ import javax.persistence.LockModeType;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -29,7 +30,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	User findOneByLoginId(String loginId);
 
 	//	@EntityGraph(value = User.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
-	User findOneByEmail(String email);
+	Optional<User> findOneByEmail(String email);
 
 	//	@EntityGraph(value = User.SHALLOW_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
 	List<User> findAllByIdIn(Collection<Long> ids);

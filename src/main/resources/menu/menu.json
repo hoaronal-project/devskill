@@ -2,7 +2,7 @@
   "menus": [
     {
       "menu": {
-        "code": "home",
+        "code": "Trang chủ",
         "icon": "icon-home",
         "url": "/",
         "role": "AUTH",
@@ -11,44 +11,18 @@
     },
     {
       "menu": {
-        "code": "store",
+        "code": "Java",
         "icon": "icon-file",
-        "url": "/admin/store/store.html",
+        "url": "#",
         "role": "STORE",
         "order": 1,
         "menus": [
           {
             "menu": {
               "code": "storeDetails",
-              "url": "/admin/store/store.html",
+              "url": "/category/java-8",
               "role": "STORE",
-              "order": 0,
-              "menus": [
-                {
-                  "menu": {
-                    "code": "storeDetails",
-                    "url": "/admin/store/store.html",
-                    "role": "STORE",
-                    "order": 0
-                  }
-                },
-                {
-                  "menu": {
-                    "code": "create-store",
-                    "url": "/admin/store/createStore.html",
-                    "role": "SUPERADMIN",
-                    "order": 1
-                  }
-                },
-                {
-                  "menu": {
-                    "code": "store-list",
-                    "url": "/admin/store/list.html",
-                    "role": "SUPERADMIN",
-                    "order": 1
-                  }
-                }
-              ]
+              "order": 0
             }
           },
           {
@@ -72,78 +46,82 @@
     },
     {
       "menu": {
-        "code": "profile",
+        "code": "Spring",
         "icon": "icon-info-sign",
-        "url": "/admin/users/displayUser.html",
+        "url": "#",
         "role": "AUTH",
         "order": 2,
         "menus": [
           {
             "menu": {
-              "code": "user",
-              "url": "",
+              "code": "Spring Core",
+              "url": "/category/spring-core",
               "role": "AUTH",
-              "order": 0,
-              "menus": [
-                {
-                  "menu": {
-                    "code": "myprofile",
-                    "url": "/admin/user/profile.html",
-                    "role": "AUTH",
-                    "order": 0
-                  }
-                },
-                {
-                  "menu": {
-                    "code": "change-password",
-                    "url": "/admin/user/password.html",
-                    "role": "AUTH",
-                    "order": 1
-                  }
-                },
-                {
-                  "menu": {
-                    "code": "users",
-                    "url": "",
-                    "role": "ADMIN",
-                    "order": 2
-                  }
-                },
-                {
-                  "menu": {
-                    "code": "create-user",
-                    "url": "",
-                    "role": "ADMIN",
-                    "order": 3
-                  }
-                }
-              ]
+              "order": 0
             }
           },
           {
             "menu": {
-              "code": "security",
-              "url": "",
+              "code": "Spring JDBC",
+              "url": "/category/spring-jdbc",
               "role": "ADMIN",
-              "order": 1,
-              "menus": [
-                {
-                  "menu": {
-                    "code": "security-groups",
-                    "url": "/admin/user/groups.html",
-                    "role": "ADMIN",
-                    "order": 1
-                  }
-                },
-                {
-                  "menu": {
-                    "code": "security-create-group",
-                    "url": "/admin/groups/new.html",
-                    "role": "ADMIN",
-                    "order": 2
-                  }
-                }
-              ]
+              "order": 1
+            }
+          },
+          {
+            "menu": {
+              "code": "Spring MVC",
+              "url": "/category/spring-mvc",
+              "role": "ADMIN",
+              "order": 1
+            }
+          },
+          {
+            "menu": {
+              "code": "Spring Thymeleaf",
+              "url": "/category/spring-thymeleaf",
+              "role": "ADMIN",
+              "order": 1
+            }
+          },
+          {
+            "menu": {
+              "code": "Spring Hibernate",
+              "url": "/category/spring-hibernate",
+              "role": "ADMIN",
+              "order": 1
+            }
+          },
+          {
+            "menu": {
+              "code": "Spring Data",
+              "url": "/category/spring-data",
+              "role": "ADMIN",
+              "order": 1
+            }
+          },
+          {
+            "menu": {
+              "code": "Spring AOP",
+              "url": "/category/spring-aop",
+              "role": "ADMIN",
+              "order": 1
+            }
+          },
+          {
+            "menu": {
+              "code": "Spring batch",
+              "url": "/category/spring-batch",
+              "role": "ADMIN",
+              "order": 1
+            }
+          },
+          {
+            "menu": {
+              "code": "Spring security",
+              "url": "/category/spring-security",
+              "role": "ADMIN",
+              "order": 1
             }
           }
         ]
@@ -151,7 +129,7 @@
     },
     {
       "menu": {
-        "code": "catalogue",
+        "code": "PHP",
         "icon": "icon-tags",
         "url": "/admin/products/products.html",
         "role": "PRODUCTS",
@@ -316,7 +294,7 @@
     },
     {
       "menu": {
-        "code": "content",
+        "code": "C#",
         "icon": "icon-pencil",
         "url": "/admin/content/pages/list.html",
         "role": "CONTENT",
@@ -395,7 +373,7 @@
     },
     {
       "menu": {
-        "code": "shipping",
+        "code": "C++",
         "icon": "icon-plane",
         "url": "/admin/shipping/shippingConfigs.html",
         "role": "SHIPPING",
