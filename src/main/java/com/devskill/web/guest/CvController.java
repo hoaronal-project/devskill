@@ -32,29 +32,29 @@ public class CvController {
         this.applicationConfig = applicationConfig;
     }
 
-    @GetMapping({"/download-cv/{idCV}"})
+    @GetMapping({"/tai-cv/{idCV}"})
     public void downloadCV(@PathVariable String idCV, HttpServletResponse response) throws UnsupportedEncodingException {
         PdfFileRequest fileRequest = new PdfFileRequest();
         fileRequest.setFileName("code-complete.pdf");
-        fileRequest.setSourceHtmlUrl("https://devskill.org/cv-detail/" + idCV);
+        fileRequest.setSourceHtmlUrl("https://devskill.org/chi-tiet-cv/" + idCV);
         byte[] pdfFile = restTemplate.postForObject(applicationConfig.getPdfServiceUrl(),
           fileRequest, byte[].class);
         writePdfFileToResponse(pdfFile, fileRequest.getFileName(), response);
     }
 
-    @GetMapping({"/cv-preview/{idCV}"})
+    @GetMapping({"/xem-cv/{idCV}"})
     public String preview(@PathVariable String idCV) {
         return "guest/cv/cv-preview";
     }
 
-    @GetMapping({"/cv-detail/{idCV}"})
+    @GetMapping({"/chi-tiet-cv/{idCV}"})
     public String detail(@PathVariable String idCV) {
         return "guest/cv/cv-detail";
     }
 
-    @GetMapping({"/index"})
+    @GetMapping({"/tao-cv-online"})
     public String index() {
-        return "guest/cv/cv-template";
+        return "guest/cv/create-cv";
     }
 
     private void writePdfFileToResponse(byte[] pdfFile, String fileName, HttpServletResponse response) throws UnsupportedEncodingException {
