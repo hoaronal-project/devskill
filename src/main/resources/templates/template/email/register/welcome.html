@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:remove="all">Template for HTML email (simple)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p th:text="#{greeting(${account})}">
+    Hello, Peter Static!
+</p>
 Welcome, [[${account}]].
 
 Thanks for your register. We’ve pulled together some information and resources to help you get started.
@@ -12,3 +22,5 @@ If you have any questions, feel free to email our devfunny123@gmail.com (We're l
 
 Thanks,
 [[${sender_name}]] and the [[${product_name}]] Team
+</body>
+</html>
