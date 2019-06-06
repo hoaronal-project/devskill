@@ -1,0 +1,1971 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Convert HTML To PDF</title>
+    <link th:href="@{/blog/css/bootstrap.css}" rel="stylesheet" media='all'/>
+    <link th:href="@{/blog/css/font-awesome.min.css}" rel="stylesheet">
+</head>
+<body>
+<style type="text/css">
+    /*===========format page & print==========*/
+    @page {
+        size: A4;
+        margin: 0cm;
+        padding: 0cm;
+    }
+
+    body {
+        background-color: #F4F4F4;
+        margin: 0px;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    #onecv-document-root {
+        margin: 0cm auto;
+        padding: 0cm;
+        font-size: 12pt;
+        position: relative;
+    }
+
+    #onecv-document {
+        color: #000;
+    }
+
+    .onecv-document {
+        width: 100%;
+    }
+
+    .onecv-document .onecv-page {
+        width: 210mm;
+        min-height: 296.86mm;
+        padding: 20mm;
+        margin: 0mm auto;
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0.25);
+        background-color: white;
+    }
+
+    .onecv-document .onecv-subpage {
+        background-color: #FFFFFF !important;
+        padding: 5mm;
+        min-height: 296.86mm;
+        padding: 0mm;
+        padding-bottom: 0cm;
+    }
+
+    .onecv-document .onecv-page {
+        padding: 0mm;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+
+    #onecv-body {
+        margin: 0 auto;
+        width: 100%;
+        min-height: 296.86mm;
+        position: relative;
+        font-family: 'Roboto', sans-serif;
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 18px;
+        color: #545E6C;
+    }
+
+    #onecv-main {
+    }
+
+    #col-main {
+        width: 70%;
+        float: right;
+        color: #444444;
+        min-height: 296.86mm;
+        padding-top: 25px;
+        background-color: #FFFFFF !important;
+    }
+
+    #col-side {
+        width: 30%;
+        color: #444;
+        min-height: 296.86mm;
+        float: left;
+        padding-bottom: 20px;
+    }
+
+    #col-main .onecv-block {
+        width: 100%;
+        padding: 5px 10px 5px 10px;
+    }
+
+    #col-main .row {
+        margin: 15px 0;
+        background-color: #FFFFFF !important;
+    }
+
+    #col-side {
+        padding: 0px;
+        background-color: #FFFFFF !important;
+    }
+
+    #col-side .onecv-block {
+        width: 100%;
+        padding: 5px 10px 5px 10px;
+    }
+
+    .onecv-month::after {
+        margin-right: -3px;
+        content: "/";
+    }
+
+    .images {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+    .thumb {
+        width: 170px;
+        height: 170px;
+        background-color: #fff;
+        background-image: none;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        display: inline-block;
+
+        cursor: pointer;
+        border-radius: 50%;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    @media print {
+        body {
+
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .onecv-document .onecv-page {
+            background-image: none;
+        }
+
+        #col-main .onecv-block:last-child {
+            padding-bottom: 0;
+        }
+
+        #group-bottom-right .onecv-block:last-child {
+            padding-bottom: 0;
+        }
+    }
+
+    #cv-watermark {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        font-size: 11px;
+        color: #999;
+    }
+
+    @media print {
+        .onecv-document .onecv-page {
+            position: initial;
+        }
+    }
+
+    /*===============end================*/
+    /*=============template===============*/
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 700;
+    }
+
+    a {
+        color: #29afa4;
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -ms-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+    }
+
+    img {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: #1a454f;
+    }
+
+    a:focus {
+        text-decoration: none;
+    }
+
+    p {
+        line-height: 1.5;
+    }
+
+    .inline {
+        display: inline;
+    }
+
+    .star {
+        margin-right: 0px;
+        color: #bfbfbf;
+    }
+
+    .star:before {
+        content: "\f111";
+        font-family: FontAwesome;
+    }
+
+    .checked_rating {
+        color: #29afa4;
+    }
+
+    .level-star-inner {
+        /*css*/
+    }
+
+    .level-star {
+        float: right;
+        display: inline;
+    }
+
+    .level-title {
+        float: left;
+        display: inline;
+    }
+
+    .at::after {
+        content: "|";
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .wrapper {
+        background: #42A8C0;
+        max-width: 807px;
+        margin: 0 auto;
+        position: relative;
+        -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar-wrapper {
+        background: #fff;
+        position: static;
+        right: 0;
+        height: 100%;
+        min-height: 800px;
+        color: #444;
+    }
+
+    .sidebar-wrapper a {
+        color: #444;
+    }
+
+    .sidebar-wrapper .profile-container {
+        padding: 5px;
+        color: #444;
+    }
+
+    .sidebar-wrapper .name {
+        font-size: 20px;
+        font-weight: 900;
+        margin-top: 0;
+        margin-bottom: 10px;
+        text-align: center;
+        line-height: 22px;
+    }
+
+    .sidebar-wrapper .tagline {
+        /* color: rgba(255, 255, 255, 0.6);*/
+        font-size: 13px;
+        font-weight: 400;
+        margin-top: 0;
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    .sidebar-wrapper .profile {
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .school {
+        margin-bottom: 10px;
+        margin-top: -6px;
+        color: #97AAC3;
+    }
+
+    .degree {
+        color: #3F4650;
+        font-size: 13px;
+        margin-top: 0;
+        /*margin-bottom: 5px;*/
+        /*font-weight: 500;*/
+    }
+
+    .meta {
+        color: rgba(6, 0, 255, 0.6);
+        font-weight: 500;
+        margin-bottom: 0px;
+        margin-top: 0;
+    }
+
+    .time {
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 500;
+        margin-bottom: 0px;
+    }
+
+    .email {
+        word-break: break-all;
+    }
+
+    .website {
+        word-break: break-all;
+    }
+
+    .linkedin {
+        word-break: break-all;
+    }
+
+    .facebook {
+        word-break: break-all;
+    }
+
+    #col-main .section-title {
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        position: relative;
+        margin-top: 0;
+        text-align: center;
+        /*letter-spacing: 3px;*/
+        margin-bottom: 20px;
+    }
+
+    #col-main .section-title-first {
+        position: relative;
+        z-index: 2;
+        display: inline;
+        background: #fff;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .after {
+        position: absolute;
+        left: 0;
+        top: 8px;
+        height: 1px;
+        background: #29afa4;
+        content: "";
+        width: 100%;
+        display: block;
+        z-index: 1;
+    }
+
+    #col-side .section-title {
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        position: relative;
+        margin-top: 0;
+        text-align: center;
+        /*letter-spacing: 3px;*/
+        margin-bottom: 20px;
+    }
+
+    #col-side .section-title-first {
+        position: relative;
+        z-index: 2;
+        display: inline;
+        background: #fff;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .title {
+
+    }
+
+    .onecv-ico {
+    }
+
+    .onecv-ico:before {
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+        display: inline-block;
+        color: #fff;
+        z-indexwebkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        background: #29afa4;
+        text-align: center;
+        padding-top: 4px;
+        padding-left: 1px;
+        font-size: 12px;
+        position: relative;
+        top: 0px;
+    }
+
+    .icoAdress {
+        margin-right: 5px;
+    }
+
+    .icoAdress:before {
+        content: "\f015";
+    }
+
+    .icoPhone {
+        margin-right: 5px;
+    }
+
+    .icoPhone:before {
+        content: "\f095";
+    }
+
+    .icoEmail {
+        margin-right: 5px;
+    }
+
+    .icoEmail:before {
+        content: "\f003";
+    }
+
+    .icoDate {
+        margin-right: 5px;
+    }
+
+    .icoDate:before {
+        content: "\f073";
+    }
+
+    .icoPlace {
+        margin-right: 5px;
+    }
+
+    .icoPlace:before {
+        content: "\f041";
+    }
+
+    .icoMarital {
+        margin-right: 5px;
+    }
+
+    .icoMarital:before {
+        content: "\f184";
+    }
+
+    .icoCiti {
+        margin-right: 5px;
+    }
+
+    .icoCiti:before {
+        content: "\f1b6";
+    }
+
+    .icoLinkedin {
+        margin-right: 5px;
+    }
+
+    .icoLinkedin:before {
+        content: "\f0e1";
+    }
+
+    .icoFacebook {
+        margin-right: 5px;
+    }
+
+    .icoFacebook:before {
+        content: "\f230";
+    }
+
+    .icoWebsite {
+        margin-right: 5px;
+    }
+
+    .icoWebsite:before {
+        content: "\f002";
+    }
+
+    .upper-row {
+        position: relative;
+        overflow: hidden;
+        /*margin-bottom: 5px;*/
+    }
+
+    .job-title {
+        color: #3F4650;
+        font-size: 13px;
+        margin-top: 0;
+        margin-bottom: 5px;
+        /*font-weight: 500;*/
+    }
+
+    .time {
+        position: absolute;
+        right: 0;
+        top: 0;
+        color: #97AAC3;
+    }
+
+    .company {
+        margin-bottom: 10px;
+        margin-top: -5px;
+        color: #97AAC3;
+    }
+
+    .skillset {
+        padding: 2px;
+    }
+
+    .skillset .level-title {
+        font-size: 14px;
+        margin-top: 0;
+        width: 50%;
+    }
+
+    .skillset .level-bar {
+        height: 12px;
+        background: #f5f5f5;
+    }
+
+    .skillset .level-bar-inner {
+        height: 12px;
+        background: #29afa4;
+    }
+
+    .awards {
+        padding: 5px;
+    }
+
+    .activity {
+        font-weight: 700;
+    }
+
+    .activities {
+        padding: 5px
+    }
+
+    .activity {
+
+    }
+
+    .details {
+        color: #545E6C;
+    }
+
+    .additional {
+        padding: 5px;
+    }
+
+    .experience {
+        /*font-weight: 500;*/
+        margin-bottom: 0px;
+        margin-top: 0;
+        padding: 5px;
+    }
+
+    .education {
+        /*font-weight: 500;*/
+        margin-bottom: 0px;
+        margin-top: 0;
+        padding: 5px;
+    }
+
+    .summary {
+        padding: 5px;
+    }
+
+    .references {
+        padding: 5px;
+    }
+
+    .projects {
+        padding: 5px;
+    }
+
+    .interests {
+        padding: 2px;
+    }
+
+    .languages {
+        padding: 2px;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 2px;
+    }
+
+    .fluency {
+        position: absolute;
+        right: 0;
+        top: 0;
+        color: #29afa4;
+    }
+
+    /*==============end=================*/
+    /*=============css editor==============*/
+    .section {
+        border: 2px solid rgba(255, 255, 255, 0);
+        padding: 5px;
+    }
+
+    .js_onecv-item {
+        cursor: pointer;
+        padding: 1px;
+        margin-bottom: 5px;
+    }
+
+    .hover-active .js_onecv-item:hover {
+        cursor: pointer;
+    }
+
+    .options_toolbar {
+        margin-top: -30px;
+        display: none;
+        height: 30px;
+        border: 2px solid #adb1b5;
+        width: auto;
+        padding: 1px;
+        text-align: center;
+        /*position: fixed;*/
+        background: #adb1b5;
+        border-radius: 4px 4px 0 0;
+        z-index: 999999999999;
+    }
+
+    .options_toolbar .tip {
+        min-width: 30px;
+        width: auto;
+        float: left;
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        cursor: pointer;
+        margin-left: 5px;
+    }
+
+    .options_toolbar .tip:before {
+        content: "Nhấn vào để chỉnh sửa, nắm để kéo thả sắp xếp các mục.";
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 200;
+    }
+
+    .options_toolbar .bt {
+        height: 100%;
+        min-width: 30px;
+        width: auto;
+        float: right;
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        cursor: pointer;
+        margin: 7px;
+    }
+
+    .options_toolbar .bt-del-block {
+        margin-right: 5px;
+        position: relative;
+        margin-top: 5px;
+    }
+
+    .options_toolbar .bt-del-block:before {
+        content: "\f00d";
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+        color: #666;
+        font-size: 25px;
+    }
+
+    .options_toolbar .bt-handle {
+        margin-right: 5px;
+        position: relative;
+        margin-top: 5px;
+    }
+
+    .options_toolbar .bt-handle:before {
+        content: "\f047";
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+        color: #666;
+        font-size: 24px;
+    }
+
+    .css_add-sections {
+        display: block;
+        position: inherit;
+        margin-right: 5px;
+        width: 100%;
+        height: 40px;
+        padding: 4px;
+        border: 2px dashed #adb1b5;
+        text-align: center;
+        cursor: pointer;
+        font-size: 22px;
+        background: #f5f5f5;
+        z-index: 9999999999;
+        color: black;
+        -webkit-animation: mymove 2s infinite;
+        animation: mymove 2s infinite;
+    }
+
+    .portlet-placeholder {
+        border: 3px dashed #09f;
+        margin: 0 1em 1em 0;
+        -webkit-animation: mymove 2s infinite;
+        animation: mymove 2s infinite;
+    }
+
+    @-webkit-keyframes mymove {
+        50% {
+            border-color: coral;
+        }
+    }
+
+    @keyframes mymove {
+        50% {
+            border-color: coral;
+        }
+    }
+
+    .bt-add-field {
+        display: none;
+        width: 100%;
+        height: 30px;
+        border: 2px dashed #adb1b5;
+        text-align: center;
+        cursor: pointer;
+        font-size: 19px;
+        background: #f5f5f5;
+        padding: 5px;
+        color: black;
+        -webkit-animation: mymove 2s infinite;
+        animation: mymove 2s infinite;
+    }
+
+    .bt-add-field:hover {
+        border-color: #27ace2;
+        color: #27ace2;
+    }
+
+    /*======================*/
+</style>
+<!--<div id="cv-layout-viewer" class="hover-active" style="">
+	<div id="onecv-document-root">
+        <div id="onecv-document" class="onecv-document">
+            <div class="onecv-page">
+                <div class="onecv-subpage">
+                    <div id="onecv-body">
+                        <div id="onecv-main" style="min-height: 1500px;">
+                            <div id="col-side" class="sidebar-wrapper">
+                                <div id="group-top-side"></div>
+                                <div id="group-bottom-side" class="sortable-sidebar ui-sortable">
+                                    <div id="onecv-personal" class="onecv-block" data-pos="1"
+                                         data-section="personal_info"
+                                         data-uniqid="26cc455b-d390-ae19-3957-dd7f1317890a">
+                                        <section class="profile-container section">
+                                            <div class="images">
+                                                <img id="doc_images" class="thumb" th:src="@{/blog/cvstyle/logo.jpg}">
+                                            </div>
+                                            <div class="address onecv-ico icoAdress js_onecv-item">
+                                                <span class="doc_address" style="font-size: 13px; line-height: 18px;">123 Nguyễn Văn Trỗi, Quận Phú Nhuận, TPHCM</span>
+                                            </div>
+                                            <div class="email onecv-ico icoEmail js_onecv-item">
+                                                <span class="doc_email" style="font-size: 13px; line-height: 18px;">nguyenvana@gmail.com</span>
+                                            </div>
+                                            <div class="phone onecv-ico icoPhone js_onecv-item">
+                                                <span class=" doc_phone" style="font-size: 13px; line-height: 18px;">0909123456</span>
+                                            </div>
+                                            <div class="website onecv-ico icoWebsite js_onecv-item">
+                                                <span class="doc_website"
+                                                      style="font-size: 13px; line-height: 18px;"></span>
+                                            </div>
+                                            <div class="place onecv-ico icoPlace js_onecv-item">
+                                                <span class="doc_placeofbirth "
+                                                      style="font-size: 13px; line-height: 18px;">Hồ Chí Minh</span>
+                                            </div>
+                                            <div class="date onecv-ico icoDate js_onecv-item">
+                                                <span class="doc_dateofbirth"
+                                                      style="font-size: 13px; line-height: 18px;">08-08-1985</span>
+                                            </div>
+                                            <div class="linkedin onecv-ico icoLinkedin js_onecv-item">
+                                                <span class="doc_linkedin" style="font-size: 13px; line-height: 18px;">linkedin.com/in/topdev</span>
+                                            </div>
+                                            <div class="facebook onecv-ico icoFacebook js_onecv-item">
+                                                <span class="doc_facebook" style="font-size: 13px; line-height: 18px;">facebook.com/topdevvietnam</span>
+                                            </div>
+                                            <div class="marital onecv-ico icoMarital js_onecv-item">
+                                                <span class="doc_marital" style="font-size: 13px; line-height: 18px;">Độc thân</span>
+                                            </div>
+                                            <div class="citizenship onecv-ico icoCiti js_onecv-item">
+                                                <span class="doc_citizenship"
+                                                      style="font-size: 13px; line-height: 18px;">Việt Nam</span>
+                                            </div>
+                                        </section>
+                                        <div style="clear: both"></div>
+                                    </div>
+                                    <div id="onecv-summary" class="onecv-block" data-section="summary" data-pos="2">
+                                        <div class="options_toolbar">
+
+                                            <div class="bt bt-del-block js_delete-block"></div>
+                                            <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                        </div>
+                                        <section class="section onecv-section">
+                                            <div class="section-title" style="font-size: 16px; line-height: 18px;">
+
+                                                <div class="section-title-first title icon-experience">
+                                                    <span class="doc_title-summary">Tóm tắt</span>
+                                                </div>
+                                                <span class="after"></span>
+                                            </div>
+                                            <div class="js_list-container-summary">
+                                                <div class="js_onecv-item" data-pos="1"
+                                                     data-uniqid="a98483d7-a2c1-f90e-89ed-a1f46baf0cd7">
+                                                    <div class="summary">
+                                                        <div class="doc_summary"
+                                                             style="font-size: 13px; line-height: 18px;">Tên tôi là A.
+                                                            Tôi 32 tuổi, tôi đã kết hôn và có 1 con trai. Mong muốn trở
+                                                            thành một PM lead team 10 nhân sự để nâng cấp các sản phẩm
+                                                            chạy nhanh và ổn định hơn cho công ty, ngoài ra tôi còn mong
+                                                            muốn được làm trong một môi trường chuyên nghiệp, đồng
+                                                            nghiệp hòa đồng và thân thiện, phúc lợi tốt nhất. Tên tôi là
+                                                            A. Tôi 32 tuổi, tôi đã kết hôn và có 1 con trai. Mong muốn
+                                                            trở thành một PM lead team 10 nhân sự để nâng cấp các sản
+                                                            phẩm chạy nhanh và ổn định hơn cho công ty, ngoài ra tôi còn
+                                                            mong muốn được làm trong một môi trường chuyên nghiệp, đồng
+                                                            nghiệp hòa đồng và thân thiện, phúc lợi tốt nhất.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div id="onecv-skills" class="onecv-block" data-section="skills" data-pos="5">
+                                        <div class="options_toolbar">
+                                            <div class="bt bt-del-block js_delete-block"></div>
+                                            <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                        </div>
+                                        <section class="section onecv-section">
+                                            <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                                <div class="section-title-first title icon-experience">
+                                                    <span class="doc_title-skills">Những kỹ năng</span>
+                                                </div>
+                                                <span class="after"></span>
+                                            </div>
+                                            <div class="sortable-skills js_list-container-skills ui-sortable">
+                                                <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                                     data-uniqid="c53c846d-348a-bf1b-cb19-ac2170c18713">
+                                                    <div class="skillset upper-row">
+                                                        <div class="level-title">
+                                                            <div class="doc_skill"
+                                                                 style="font-size: 14px; line-height: 18px;">Php
+                                                            </div>
+                                                        </div>
+                                                        <div class="level-star">
+                                                            <div class="level-star-inner doc_level stylestar"
+                                                                 data-level="90"
+                                                                 style="font-size: 13px; line-height: 18px;">
+                                                                <span class="star checked_rating"></span>
+                                                                <span class="star checked_rating"></span>
+                                                                <span class="star checked_rating"></span>
+                                                                <span class="star checked_rating"></span>
+                                                                <span class="star checked_rating"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bt-add-field js_add-field"
+                                                 style="font-size: 19px; line-height: 18px;">Thêm mới
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div id="onecv-languages" class="onecv-block" data-section="languages" data-pos="6">
+                                        <div class="options_toolbar">
+                                            <div class="bt bt-del-block js_delete-block"></div>
+                                            <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                        </div>
+                                        <section class="section onecv-section">
+                                            <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                                <div class="section-title-first title icon-experience">
+                                                    <span class="doc_title-languages">Ngôn ngữ</span>
+                                                </div>
+                                                <span class="after"></span>
+                                            </div>
+                                            <div class="sortable-languages js_list-container-languages ui-sortable">
+                                                <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                                     data-uniqid="483f5c87-5994-7920-fe81-414fe4e1fb54">
+                                                    <div class="languages">
+                                                        <div class="lang">
+                                                            <div class="doc_language"
+                                                                 style="font-size: 13px; line-height: 18px;">English
+                                                            </div>
+                                                        </div>
+                                                        <div class="fluency">
+                                                            <div class="doc_fluency"
+                                                                 style="font-size: 13px; line-height: 18px;">Native
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div id="onecv-interests" class="onecv-block" data-section="interests" data-pos="8">
+                                        <div class="options_toolbar">
+                                            <div class="bt bt-del-block js_delete-block"></div>
+                                            <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                        </div>
+                                        <section class="section onecv-section">
+                                            <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                                <div class="section-title-first title icon-experience">
+                                                    <span class="doc_title-interests">Sở thích</span>
+                                                </div>
+                                                <span class="after"></span>
+                                            </div>
+                                            <div class="sortable-interests js_list-container-interests ui-sortable">
+                                                <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                                     data-uniqid="78358e03-bb66-c1c2-ace0-04e0bdd6cdf1">
+                                                    <div class="interests">
+                                                        <div class="doc_interest"
+                                                             style="font-size: 13px; line-height: 18px;">Nghe nhạc, bóng
+                                                            rổ, chơi guitar, đọc sách, du lịch.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="col-main" class="sortable-main ui-sortable">
+
+
+                                <div class="onecv-block" data-pos="1" data-section="personal_info">
+                                    <section class="contact-container onecv-section" style="text-align: center;">
+                                        <div class="name js_onecv-item">
+                                            <span class="doc_name"
+                                                  style="font-weight: 600; font-size: 38px; color: rgb(41, 175, 164); line-height: 18px;">Your Name</span>
+                                        </div>
+                                        <div class="tagline js_onecv-item">
+                                            <span class="doc_profession"
+                                                  style="font-weight: 100; font-size: 26px; color: rgb(174, 174, 174); line-height: 18px;">Senior Developer</span>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div id="onecv-education" class="onecv-block" data-section="education" data-pos="3">
+                                    <div class="options_toolbar">
+                                        <div class="tip"></div>
+                                        <div class="bt bt-del-block js_delete-block"></div>
+                                        <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                    </div>
+                                    <section class="section onecv-section">
+                                        <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                            <div class="section-title-first title icon-education">
+                                                <span class="doc_title-education">Học tập</span>
+                                            </div>
+                                            <span class="after"></span>
+                                        </div>
+                                        <div class="sortable-edu js_list-container-education ui-sortable">
+                                            <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                                 data-uniqid="d7f07c90-716f-4c9b-5f93-dc91f57b0d36">
+                                                <div class="education">
+                                                    <div class="upper-row">
+                                                        <div class="job-title">
+                                                            <div class="doc_degree"
+                                                                 style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 18px;">
+                                                                Cử nhân công nghệ thông tin
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="school upper-row">
+                                                        <div class="doc_schoolname at inline"
+                                                             style="font-size: 13px; line-height: 18px;">Đại Học TopDev
+                                                        </div>
+                                                        <div class="inline">
+                                                            <span class="doc_MonthFromEdu onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">10</span>
+                                                            <span class="doc_YearFromEdu"
+                                                                  style="font-size: 13px; line-height: 18px;">2010</span>
+                                                            -
+                                                            <span class="doc_MonthToEdu onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">08</span>
+                                                            <span class="doc_YearToEdu"
+                                                                  style="font-size: 13px; line-height: 18px;">2017</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="details">&lt;!&ndash; css template details &ndash;&gt;
+                                                        <div class="doc_description"
+                                                             style="font-size: 13px; line-height: 18px;">Xếp loại học
+                                                            lực: giỏi
+                                                        </div>&lt;!&ndash; js details &ndash;&gt;
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            &lt;!&ndash; end item &ndash;&gt;
+
+                                            &lt;!&ndash; item education &ndash;&gt;
+                                            <div class="js_onecv-item ui-sortable-handle" data-pos="2"
+                                                 data-uniqid="ba77dbbd-0a51-ba97-5438-30c9cb26a53b">&lt;!&ndash; js item &ndash;&gt;
+                                                <div class="education">&lt;!&ndash; css template education &ndash;&gt;
+                                                    <div class="upper-row">
+                                                        <div class="job-title">&lt;!&ndash; css template degree &ndash;&gt;
+                                                            <div class="doc_degree"
+                                                                 style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 18px;">
+                                                                Chứng chỉ lập trình viên Php
+                                                            </div>&lt;!&ndash; js degree &ndash;&gt;
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="school upper-row">&lt;!&ndash; css template shool &ndash;&gt;
+                                                        <div class="doc_schoolname at inline"
+                                                             style="font-size: 13px; line-height: 18px;">Học viện TopDev
+                                                        </div>&lt;!&ndash; js schoool &ndash;&gt;
+                                                        <div class="inline">&lt;!&ndash; css template time &ndash;&gt;
+                                                            <span class="doc_MonthFromEdu onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">01</span>
+                                                            <span class="doc_YearFromEdu"
+                                                                  style="font-size: 13px; line-height: 18px;">2010</span>
+                                                            -
+                                                            <span class="doc_MonthToEdu onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">01</span>
+                                                            <span class="doc_YearToEdu"
+                                                                  style="font-size: 13px; line-height: 18px;">2011</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="details">&lt;!&ndash; css template details &ndash;&gt;
+                                                        <div class="doc_description"
+                                                             style="font-size: 13px; line-height: 18px;">
+                                                            <ul>
+                                                                <li><i> Php, Javascript, Mysql </i></li>
+                                                                <li><i> Git, Linux, Redis, MongoDB </i></li>
+                                                                <li><i> Laravel framework, Jquery, React, Vuejs </i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>&lt;!&ndash; js details &ndash;&gt;
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            &lt;!&ndash; end item &ndash;&gt;
+                                        </div>
+                                        <div class="bt-add-field js_add-field"
+                                             style="font-size: 19px; line-height: 18px;">Thêm mới
+                                        </div>
+                                    </section>
+                                    &lt;!&ndash;//education-section&ndash;&gt;
+                                </div>
+                                <div id="onecv-experience" class="onecv-block" data-section="experience" data-pos="4">
+                                    &lt;!&ndash; toolbar &ndash;&gt;
+                                    <div class="options_toolbar" style="display: none;">
+                                        <div class="tip"></div>
+                                        <div class="bt bt-del-block js_delete-block"></div>
+                                        <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                    </div>
+                                    <section class="section onecv-section"
+                                             style="border: 2px solid rgba(255, 255, 255, 0);">
+                                        <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                            <div class="section-title-first title icon-experience">
+                                                <span class="doc_title-experience">Kinh nghiệm</span>
+                                            </div>
+                                            <span class="after"></span>
+                                        </div>
+                                        <div class="sortable-exp js_list-container-experience ui-sortable">
+                                            <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                                 data-uniqid="b9cae520-afa4-5679-d3a2-6f9cd404e87e">
+                                                <div class="experience">
+                                                    <div class="upper-row">
+                                                        <div class="job-title">
+                                                            <div class="doc_position"
+                                                                 style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 18px;">
+                                                                Fresher Developer
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="company upper-row">
+                                                        <div class="doc_company at inline"
+                                                             style="font-size: 13px; line-height: 18px;">Công ty TopDev
+                                                        </div>
+                                                        <div class="inline">
+                                                            <span class="doc_MonthFromExp onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">10</span>
+                                                            <span class="doc_YearFromExp"
+                                                                  style="font-size: 13px; line-height: 18px;">2010</span>
+                                                            -
+                                                            <span class="doc_MonthToExp onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">10</span>
+                                                            <span class="doc_YearToExp"
+                                                                  style="font-size: 13px; line-height: 18px;">2012</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="doc_experience"
+                                                             style="font-size: 13px; line-height: 18px;">
+                                                            <ul>
+                                                                <li><i>Thực hiện dự án với team dùng Laravel framework
+                                                                    làm backend.</i></li>
+                                                                <li><i>Sử dụng Boostrap framework, React Lib.</i></li>
+                                                                <li><i>Áp dụng Vuejs cho frontend.</i></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="js_onecv-item ui-sortable-handle" data-pos="2"
+                                                 data-uniqid="1d2b5f34-a4dc-c284-74ed-f80b39b2466c">
+                                                <div class="experience">
+                                                    <div class="upper-row">
+                                                        <div class="job-title">
+                                                            <div class="doc_position"
+                                                                 style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 18px;">
+                                                                Junior Developer
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="company upper-row">
+                                                        <div class="doc_company at inline"
+                                                             style="font-size: 13px; line-height: 18px;">Google
+                                                        </div>
+                                                        <div class="inline">
+                                                            <span class="doc_MonthFromExp onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">10</span>
+                                                            <span class="doc_YearFromExp"
+                                                                  style="font-size: 13px; line-height: 18px;">2012</span>
+                                                            -
+                                                            <span class="doc_MonthToExp onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">10</span>
+                                                            <span class="doc_YearToExp"
+                                                                  style="font-size: 13px; line-height: 18px;">2016</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="doc_experience"
+                                                             style="font-size: 13px; line-height: 18px;">Thực hiện các
+                                                            dự án Machine Learning, Big data.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="js_onecv-item ui-sortable-handle" data-pos="3"
+                                                 data-uniqid="8a89836a-e9ec-2cd5-4b2f-1697e482768d">
+                                                <div class="experience">
+                                                    <div class="upper-row">
+                                                        <div class="job-title">
+                                                            <div class="doc_position"
+                                                                 style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 18px;">
+                                                                Senior Developer
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="company upper-row">
+                                                        <div class="doc_company at inline"
+                                                             style="font-size: 13px; line-height: 18px;">Facebook
+                                                        </div>
+                                                        <div class="inline">
+                                                            <span class="doc_MonthFromExp onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">10</span>
+                                                            <span class="doc_YearFromExp"
+                                                                  style="font-size: 13px; line-height: 18px;">2016</span>
+                                                            -
+                                                            <span class="doc_MonthToExp onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">10</span>
+                                                            <span class="doc_YearToExp"
+                                                                  style="font-size: 13px; line-height: 18px;">2017</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="doc_experience"
+                                                             style="font-size: 13px; line-height: 18px;">Tiếp tục thực
+                                                            hiện dự án liên quan đến Php.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bt-add-field js_add-field"
+                                             style="font-size: 19px; line-height: 18px; display: none;">Thêm mới
+                                        </div>
+                                    </section>
+                                </div>
+                                <div id="onecv-activities" class="onecv-block" data-section="activities" data-pos="6">
+                                    <div class="options_toolbar">
+                                        <div class="tip"></div>
+                                        <div class="bt bt-del-block js_delete-block"></div>
+                                        <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                    </div>
+                                    <section class="section onecv-section">
+                                        <div class="section-title" style="font-size: 16px; line-height: 18px;">
+
+                                            <div class="section-title-first title icon-activities">
+                                                <span class="doc_title-activities">Hoạt động</span>
+                                            </div>
+                                            <span class="after"></span>
+                                        </div>
+                                        <div class="sortable-activities js_list-container-activities ui-sortable">
+                                            <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                                 data-uniqid="65e33a09-4d04-c026-a196-00976bf34ab2">
+                                                <div class="activities">
+                                                    <div class="activity">
+                                                        <p class="doc_activity"
+                                                           style="font-size: 13px; line-height: 19.5px;">Tham gia Lập
+                                                            Trình Viên quốc tế</p>
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="doc_achievement"
+                                                             style="font-size: 13px; line-height: 18px;">Cùng team lập
+                                                            trình TopDev dự Facebook Hackathon và giành được giải nhất.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="js_onecv-item ui-sortable-handle" data-pos="2"
+                                                 data-uniqid="82652981-82fe-ed7e-8252-990bc0d1a712">
+                                                <div class="activities">
+                                                    <div class="activity">
+                                                        <p class="doc_activity"
+                                                           style="font-size: 13px; line-height: 19.5px;">Tham gia giải
+                                                            bóng rổ chuyên nghiên VBA</p>
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="doc_achievement"
+                                                             style="font-size: 13px; line-height: 18px;">Cùng team bóng
+                                                            rổ TopDev dự giải đấu và giành được giải nhì.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bt-add-field js_add-field"
+                                             style="font-size: 19px; line-height: 18px;">Thêm mới
+                                        </div>
+                                    </section>
+                                </div>
+                                <div id="onecv-references" class="onecv-block" data-section="references" data-pos="9">
+                                    <div class="options_toolbar">
+                                        <div class="tip"></div>
+                                        <div class="bt bt-del-block js_delete-block"></div>
+                                        <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                    </div>
+                                    <section class="section onecv-section">
+                                        <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                            <div class="section-title-first title icon-references">
+                                                <span class="doc_title-references">Người tham khảo</span>
+                                            </div>
+                                            <span class="after"></span>
+                                        </div>
+                                        <div class="sortable-references js_list-container-references ui-sortable">
+                                            <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                                 data-uniqid="169e61ff-0788-e783-0823-17d04bef897e">
+                                                <div class="references">
+                                                    <div class="name">
+                                                        <p class="doc_refer_name"
+                                                           style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 19.5px;">
+                                                            Nguyễn Hữu B</p>
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="doc_refer_profession"
+                                                             style="font-size: 13px; line-height: 18px;">Product Manager
+                                                        </div>
+                                                        <div class="doc_refer_email"
+                                                             style="font-size: 13px; line-height: 18px;">
+                                                            nguyenhuub@gmail.com
+                                                        </div>
+                                                        <div class="doc_refer_phone"
+                                                             style="font-size: 13px; line-height: 18px;">0909123456
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div id="onecv-projects" class="onecv-block" data-section="projects" data-pos="10">
+                                    <div class="options_toolbar">
+                                        <div class="tip"></div>
+                                        <div class="bt bt-del-block js_delete-block"></div>
+                                        <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                    </div>
+                                    <section class="section onecv-section">
+                                        <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                            <div class="section-title-first title icon-projects">
+                                                <span class="doc_title-projects">Dự án</span>
+                                            </div>
+                                            <span class="after"></span>
+                                        </div>
+                                        <div class="sortable-projects js_list-container-projects ui-sortable">
+                                            <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                                 data-uniqid="d2743cbc-02b4-8aa8-a268-4fc8b3705de8">
+                                                <div class="projects">
+                                                    <ul>
+                                                        <li>Hệ thống Test<br></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div id="onecv-additional" class="onecv-block" data-section="additional" data-pos="11">
+                                    <div class="options_toolbar">
+                                        <div class="tip"></div>
+                                        <div class="bt bt-del-block js_delete-block"></div>
+                                        <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                    </div>
+                                    <section class="section onecv-section">
+                                        <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                            <div class="section-title-first title icon-additional">
+                                                <span class="doc_title-additional">Thông tin thêm</span>
+                                            </div>
+                                            <span class="after"></span>
+                                        </div>
+                                        <div class="js_list-container-additional">
+                                            <div class="js_onecv-item" data-pos="1"
+                                                 data-uniqid="d44f9aee-c48d-5a7a-878f-69ebd173a0c4">
+                                                <div class="additional">
+                                                    <div class="doc_additional"
+                                                         style="font-size: 13px; line-height: 18px;">
+                                                        <p>- Có nhiều kỹ năng mềm, vui vẻ hòa đồng với đồng nghiệp.</p>
+                                                        <p>- Chăm chỉ, cầu tiến, khả năng teamwork tốt.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>-->
+<div class="onecv-page">
+    <div id="onecv-document" class="onecv-document">
+        <div class="onecv-subpage">
+            <div id="onecv-body">
+                <div id="onecv-main" style="min-height: 1500px;">
+                    <div id="col-side" class="sidebar-wrapper">
+                        <div id="group-top-side"></div>
+                        <div id="group-bottom-side" class="sortable-sidebar ui-sortable">
+                            <div id="onecv-personal" class="onecv-block" data-pos="1"
+                                 data-section="personal_info"
+                                 data-uniqid="26cc455b-d390-ae19-3957-dd7f1317890a">
+                                <section class="profile-container section">
+                                    <div class="images">
+                                        <img id="doc_images" class="thumb" th:src="@{/blog/cvstyle/logo.jpg}">
+                                    </div>
+                                    <div class="address onecv-ico icoAdress js_onecv-item">
+                                        <span class="doc_address" style="font-size: 13px; line-height: 18px;">123 Nguyễn Văn Trỗi, Quận Phú Nhuận, TPHCM</span>
+                                    </div>
+                                    <div class="email onecv-ico icoEmail js_onecv-item">
+                                        <span class="doc_email" style="font-size: 13px; line-height: 18px;">nguyenvana@gmail.com</span>
+                                    </div>
+                                    <div class="phone onecv-ico icoPhone js_onecv-item">
+                                        <span class=" doc_phone"
+                                              style="font-size: 13px; line-height: 18px;">0909123456</span>
+                                    </div>
+                                    <div class="website onecv-ico icoWebsite js_onecv-item">
+                                                <span class="doc_website"
+                                                      style="font-size: 13px; line-height: 18px;"></span>
+                                    </div>
+                                    <div class="place onecv-ico icoPlace js_onecv-item">
+                                                <span class="doc_placeofbirth "
+                                                      style="font-size: 13px; line-height: 18px;">Hồ Chí Minh</span>
+                                    </div>
+                                    <div class="date onecv-ico icoDate js_onecv-item">
+                                                <span class="doc_dateofbirth"
+                                                      style="font-size: 13px; line-height: 18px;">08-08-1985</span>
+                                    </div>
+                                    <div class="linkedin onecv-ico icoLinkedin js_onecv-item">
+                                        <span class="doc_linkedin" style="font-size: 13px; line-height: 18px;">linkedin.com/in/topdev</span>
+                                    </div>
+                                    <div class="facebook onecv-ico icoFacebook js_onecv-item">
+                                        <span class="doc_facebook" style="font-size: 13px; line-height: 18px;">facebook.com/topdevvietnam</span>
+                                    </div>
+                                    <div class="marital onecv-ico icoMarital js_onecv-item">
+                                        <span class="doc_marital"
+                                              style="font-size: 13px; line-height: 18px;">Độc thân</span>
+                                    </div>
+                                    <div class="citizenship onecv-ico icoCiti js_onecv-item">
+                                                <span class="doc_citizenship"
+                                                      style="font-size: 13px; line-height: 18px;">Việt Nam</span>
+                                    </div>
+                                </section>
+                                <div style="clear: both"></div>
+                            </div>
+                            <div id="onecv-summary" class="onecv-block" data-section="summary" data-pos="2">
+                                <div class="options_toolbar">
+
+                                    <div class="bt bt-del-block js_delete-block"></div>
+                                    <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                </div>
+                                <section class="section onecv-section">
+                                    <div class="section-title" style="font-size: 16px; line-height: 18px;">
+
+                                        <div class="section-title-first title icon-experience">
+                                            <span class="doc_title-summary">Tóm tắt</span>
+                                        </div>
+                                        <span class="after"></span>
+                                    </div>
+                                    <div class="js_list-container-summary">
+                                        <div class="js_onecv-item" data-pos="1"
+                                             data-uniqid="a98483d7-a2c1-f90e-89ed-a1f46baf0cd7">
+                                            <div class="summary">
+                                                <div class="doc_summary"
+                                                     style="font-size: 13px; line-height: 18px;">Tên tôi là A.
+                                                    Tôi 32 tuổi, tôi đã kết hôn và có 1 con trai. Mong muốn trở
+                                                    thành một PM lead team 10 nhân sự để nâng cấp các sản phẩm
+                                                    chạy nhanh và ổn định hơn cho công ty, ngoài ra tôi còn mong
+                                                    muốn được làm trong một môi trường chuyên nghiệp, đồng
+                                                    nghiệp hòa đồng và thân thiện, phúc lợi tốt nhất. Tên tôi là
+                                                    A. Tôi 32 tuổi, tôi đã kết hôn và có 1 con trai. Mong muốn
+                                                    trở thành một PM lead team 10 nhân sự để nâng cấp các sản
+                                                    phẩm chạy nhanh và ổn định hơn cho công ty, ngoài ra tôi còn
+                                                    mong muốn được làm trong một môi trường chuyên nghiệp, đồng
+                                                    nghiệp hòa đồng và thân thiện, phúc lợi tốt nhất.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div id="onecv-skills" class="onecv-block" data-section="skills" data-pos="5">
+                                <div class="options_toolbar">
+                                    <div class="bt bt-del-block js_delete-block"></div>
+                                    <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                </div>
+                                <section class="section onecv-section">
+                                    <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                        <div class="section-title-first title icon-experience">
+                                            <span class="doc_title-skills">Những kỹ năng</span>
+                                        </div>
+                                        <span class="after"></span>
+                                    </div>
+                                    <div class="sortable-skills js_list-container-skills ui-sortable">
+                                        <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                             data-uniqid="c53c846d-348a-bf1b-cb19-ac2170c18713">
+                                            <div class="skillset upper-row">
+                                                <div class="level-title">
+                                                    <div class="doc_skill"
+                                                         style="font-size: 14px; line-height: 18px;">Php
+                                                    </div>
+                                                </div>
+                                                <div class="level-star">
+                                                    <div class="level-star-inner doc_level stylestar"
+                                                         data-level="90"
+                                                         style="font-size: 13px; line-height: 18px;">
+                                                        <span class="star checked_rating"></span>
+                                                        <span class="star checked_rating"></span>
+                                                        <span class="star checked_rating"></span>
+                                                        <span class="star checked_rating"></span>
+                                                        <span class="star checked_rating"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bt-add-field js_add-field"
+                                         style="font-size: 19px; line-height: 18px;">Thêm mới
+                                    </div>
+                                </section>
+                            </div>
+                            <div id="onecv-languages" class="onecv-block" data-section="languages" data-pos="6">
+                                <div class="options_toolbar">
+                                    <div class="bt bt-del-block js_delete-block"></div>
+                                    <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                </div>
+                                <section class="section onecv-section">
+                                    <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                        <div class="section-title-first title icon-experience">
+                                            <span class="doc_title-languages">Ngôn ngữ</span>
+                                        </div>
+                                        <span class="after"></span>
+                                    </div>
+                                    <div class="sortable-languages js_list-container-languages ui-sortable">
+                                        <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                             data-uniqid="483f5c87-5994-7920-fe81-414fe4e1fb54">
+                                            <div class="languages">
+                                                <div class="lang">
+                                                    <div class="doc_language"
+                                                         style="font-size: 13px; line-height: 18px;">English
+                                                    </div>
+                                                </div>
+                                                <div class="fluency">
+                                                    <div class="doc_fluency"
+                                                         style="font-size: 13px; line-height: 18px;">Native
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div id="onecv-interests" class="onecv-block" data-section="interests" data-pos="8">
+                                <div class="options_toolbar">
+                                    <div class="bt bt-del-block js_delete-block"></div>
+                                    <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                                </div>
+                                <section class="section onecv-section">
+                                    <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                        <div class="section-title-first title icon-experience">
+                                            <span class="doc_title-interests">Sở thích</span>
+                                        </div>
+                                        <span class="after"></span>
+                                    </div>
+                                    <div class="sortable-interests js_list-container-interests ui-sortable">
+                                        <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                             data-uniqid="78358e03-bb66-c1c2-ace0-04e0bdd6cdf1">
+                                            <div class="interests">
+                                                <div class="doc_interest"
+                                                     style="font-size: 13px; line-height: 18px;">Nghe nhạc, bóng
+                                                    rổ, chơi guitar, đọc sách, du lịch.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="col-main" class="sortable-main ui-sortable">
+
+
+                        <div class="onecv-block" data-pos="1" data-section="personal_info">
+                            <section class="contact-container onecv-section" style="text-align: center;">
+                                <div class="name js_onecv-item">
+                                            <span class="doc_name"
+                                                  style="font-weight: 600; font-size: 38px; color: rgb(41, 175, 164); line-height: 18px;">Your Name</span>
+                                </div>
+                                <div class="tagline js_onecv-item">
+                                            <span class="doc_profession"
+                                                  style="font-weight: 100; font-size: 26px; color: rgb(174, 174, 174); line-height: 18px;">Senior Developer</span>
+                                </div>
+                            </section>
+                        </div>
+                        <div id="onecv-education" class="onecv-block" data-section="education" data-pos="3">
+                            <div class="options_toolbar">
+                                <div class="tip"></div>
+                                <div class="bt bt-del-block js_delete-block"></div>
+                                <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                            </div>
+                            <section class="section onecv-section">
+                                <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                    <div class="section-title-first title icon-education">
+                                        <span class="doc_title-education">Học tập</span>
+                                    </div>
+                                    <span class="after"></span>
+                                </div>
+                                <div class="sortable-edu js_list-container-education ui-sortable">
+                                    <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                         data-uniqid="d7f07c90-716f-4c9b-5f93-dc91f57b0d36">
+                                        <div class="education">
+                                            <div class="upper-row">
+                                                <div class="job-title">
+                                                    <div class="doc_degree"
+                                                         style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 18px;">
+                                                        Cử nhân công nghệ thông tin
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="school upper-row">
+                                                <div class="doc_schoolname at inline"
+                                                     style="font-size: 13px; line-height: 18px;">Đại Học TopDev
+                                                </div>
+                                                <div class="inline">
+                                                            <span class="doc_MonthFromEdu onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">10</span>
+                                                    <span class="doc_YearFromEdu"
+                                                          style="font-size: 13px; line-height: 18px;">2010</span>
+                                                    -
+                                                    <span class="doc_MonthToEdu onecv-month"
+                                                          style="font-size: 13px; line-height: 18px;">08</span>
+                                                    <span class="doc_YearToEdu"
+                                                          style="font-size: 13px; line-height: 18px;">2017</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="details"><!-- css template details -->
+                                                <div class="doc_description"
+                                                     style="font-size: 13px; line-height: 18px;">Xếp loại học
+                                                    lực: giỏi
+                                                </div><!-- js details -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end item -->
+
+                                    <!-- item education -->
+                                    <div class="js_onecv-item ui-sortable-handle" data-pos="2"
+                                         data-uniqid="ba77dbbd-0a51-ba97-5438-30c9cb26a53b"><!-- js item -->
+                                        <div class="education"><!-- css template education -->
+                                            <div class="upper-row">
+                                                <div class="job-title"><!-- css template degree -->
+                                                    <div class="doc_degree"
+                                                         style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 18px;">
+                                                        Chứng chỉ lập trình viên Php
+                                                    </div><!-- js degree -->
+                                                </div>
+
+                                            </div>
+                                            <div class="school upper-row"><!-- css template shool -->
+                                                <div class="doc_schoolname at inline"
+                                                     style="font-size: 13px; line-height: 18px;">Học viện TopDev
+                                                </div><!-- js schoool -->
+                                                <div class="inline"><!-- css template time -->
+                                                    <span class="doc_MonthFromEdu onecv-month"
+                                                          style="font-size: 13px; line-height: 18px;">01</span>
+                                                    <span class="doc_YearFromEdu"
+                                                          style="font-size: 13px; line-height: 18px;">2010</span>
+                                                    -
+                                                    <span class="doc_MonthToEdu onecv-month"
+                                                          style="font-size: 13px; line-height: 18px;">01</span>
+                                                    <span class="doc_YearToEdu"
+                                                          style="font-size: 13px; line-height: 18px;">2011</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="details"><!-- css template details -->
+                                                <div class="doc_description"
+                                                     style="font-size: 13px; line-height: 18px;">
+                                                    <ul>
+                                                        <li><i> Php, Javascript, Mysql </i></li>
+                                                        <li><i> Git, Linux, Redis, MongoDB </i></li>
+                                                        <li><i> Laravel framework, Jquery, React, Vuejs </i>
+                                                        </li>
+                                                    </ul>
+                                                </div><!-- js details -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end item -->
+                                </div>
+                                <div class="bt-add-field js_add-field"
+                                     style="font-size: 19px; line-height: 18px;">Thêm mới
+                                </div>
+                            </section>
+                            <!--//education-section-->
+                        </div>
+                        <div id="onecv-experience" class="onecv-block" data-section="experience" data-pos="4">
+                            <!-- toolbar -->
+                            <div class="options_toolbar" style="display: none;">
+                                <div class="tip"></div>
+                                <div class="bt bt-del-block js_delete-block"></div>
+                                <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                            </div>
+                            <section class="section onecv-section"
+                                     style="border: 2px solid rgba(255, 255, 255, 0);">
+                                <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                    <div class="section-title-first title icon-experience">
+                                        <span class="doc_title-experience">Kinh nghiệm</span>
+                                    </div>
+                                    <span class="after"></span>
+                                </div>
+                                <div class="sortable-exp js_list-container-experience ui-sortable">
+                                    <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                         data-uniqid="b9cae520-afa4-5679-d3a2-6f9cd404e87e">
+                                        <div class="experience">
+                                            <div class="upper-row">
+                                                <div class="job-title">
+                                                    <div class="doc_position"
+                                                         style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 18px;">
+                                                        Fresher Developer
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="company upper-row">
+                                                <div class="doc_company at inline"
+                                                     style="font-size: 13px; line-height: 18px;">Công ty TopDev
+                                                </div>
+                                                <div class="inline">
+                                                            <span class="doc_MonthFromExp onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">10</span>
+                                                    <span class="doc_YearFromExp"
+                                                          style="font-size: 13px; line-height: 18px;">2010</span>
+                                                    -
+                                                    <span class="doc_MonthToExp onecv-month"
+                                                          style="font-size: 13px; line-height: 18px;">10</span>
+                                                    <span class="doc_YearToExp"
+                                                          style="font-size: 13px; line-height: 18px;">2012</span>
+                                                </div>
+                                            </div>
+                                            <div class="details">
+                                                <div class="doc_experience"
+                                                     style="font-size: 13px; line-height: 18px;">
+                                                    <ul>
+                                                        <li><i>Thực hiện dự án với team dùng Laravel framework
+                                                            làm backend.</i></li>
+                                                        <li><i>Sử dụng Boostrap framework, React Lib.</i></li>
+                                                        <li><i>Áp dụng Vuejs cho frontend.</i></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="js_onecv-item ui-sortable-handle" data-pos="2"
+                                         data-uniqid="1d2b5f34-a4dc-c284-74ed-f80b39b2466c">
+                                        <div class="experience">
+                                            <div class="upper-row">
+                                                <div class="job-title">
+                                                    <div class="doc_position"
+                                                         style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 18px;">
+                                                        Junior Developer
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="company upper-row">
+                                                <div class="doc_company at inline"
+                                                     style="font-size: 13px; line-height: 18px;">Google
+                                                </div>
+                                                <div class="inline">
+                                                            <span class="doc_MonthFromExp onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">10</span>
+                                                    <span class="doc_YearFromExp"
+                                                          style="font-size: 13px; line-height: 18px;">2012</span>
+                                                    -
+                                                    <span class="doc_MonthToExp onecv-month"
+                                                          style="font-size: 13px; line-height: 18px;">10</span>
+                                                    <span class="doc_YearToExp"
+                                                          style="font-size: 13px; line-height: 18px;">2016</span>
+                                                </div>
+                                            </div>
+                                            <div class="details">
+                                                <div class="doc_experience"
+                                                     style="font-size: 13px; line-height: 18px;">Thực hiện các
+                                                    dự án Machine Learning, Big data.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="js_onecv-item ui-sortable-handle" data-pos="3"
+                                         data-uniqid="8a89836a-e9ec-2cd5-4b2f-1697e482768d">
+                                        <div class="experience">
+                                            <div class="upper-row">
+                                                <div class="job-title">
+                                                    <div class="doc_position"
+                                                         style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 18px;">
+                                                        Senior Developer
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="company upper-row">
+                                                <div class="doc_company at inline"
+                                                     style="font-size: 13px; line-height: 18px;">Facebook
+                                                </div>
+                                                <div class="inline">
+                                                            <span class="doc_MonthFromExp onecv-month"
+                                                                  style="font-size: 13px; line-height: 18px;">10</span>
+                                                    <span class="doc_YearFromExp"
+                                                          style="font-size: 13px; line-height: 18px;">2016</span>
+                                                    -
+                                                    <span class="doc_MonthToExp onecv-month"
+                                                          style="font-size: 13px; line-height: 18px;">10</span>
+                                                    <span class="doc_YearToExp"
+                                                          style="font-size: 13px; line-height: 18px;">2017</span>
+                                                </div>
+                                            </div>
+                                            <div class="details">
+                                                <div class="doc_experience"
+                                                     style="font-size: 13px; line-height: 18px;">Tiếp tục thực
+                                                    hiện dự án liên quan đến Php.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bt-add-field js_add-field"
+                                     style="font-size: 19px; line-height: 18px; display: none;">Thêm mới
+                                </div>
+                            </section>
+                        </div>
+                        <div id="onecv-activities" class="onecv-block" data-section="activities" data-pos="6">
+                            <div class="options_toolbar">
+                                <div class="tip"></div>
+                                <div class="bt bt-del-block js_delete-block"></div>
+                                <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                            </div>
+                            <section class="section onecv-section">
+                                <div class="section-title" style="font-size: 16px; line-height: 18px;">
+
+                                    <div class="section-title-first title icon-activities">
+                                        <span class="doc_title-activities">Hoạt động</span>
+                                    </div>
+                                    <span class="after"></span>
+                                </div>
+                                <div class="sortable-activities js_list-container-activities ui-sortable">
+                                    <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                         data-uniqid="65e33a09-4d04-c026-a196-00976bf34ab2">
+                                        <div class="activities">
+                                            <div class="activity">
+                                                <p class="doc_activity"
+                                                   style="font-size: 13px; line-height: 19.5px;">Tham gia Lập
+                                                    Trình Viên quốc tế</p>
+                                            </div>
+                                            <div class="details">
+                                                <div class="doc_achievement"
+                                                     style="font-size: 13px; line-height: 18px;">Cùng team lập
+                                                    trình TopDev dự Facebook Hackathon và giành được giải nhất.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="js_onecv-item ui-sortable-handle" data-pos="2"
+                                         data-uniqid="82652981-82fe-ed7e-8252-990bc0d1a712">
+                                        <div class="activities">
+                                            <div class="activity">
+                                                <p class="doc_activity"
+                                                   style="font-size: 13px; line-height: 19.5px;">Tham gia giải
+                                                    bóng rổ chuyên nghiên VBA</p>
+                                            </div>
+                                            <div class="details">
+                                                <div class="doc_achievement"
+                                                     style="font-size: 13px; line-height: 18px;">Cùng team bóng
+                                                    rổ TopDev dự giải đấu và giành được giải nhì.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bt-add-field js_add-field"
+                                     style="font-size: 19px; line-height: 18px;">Thêm mới
+                                </div>
+                            </section>
+                        </div>
+                        <div id="onecv-references" class="onecv-block" data-section="references" data-pos="9">
+                            <div class="options_toolbar">
+                                <div class="tip"></div>
+                                <div class="bt bt-del-block js_delete-block"></div>
+                                <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                            </div>
+                            <section class="section onecv-section">
+                                <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                    <div class="section-title-first title icon-references">
+                                        <span class="doc_title-references">Người tham khảo</span>
+                                    </div>
+                                    <span class="after"></span>
+                                </div>
+                                <div class="sortable-references js_list-container-references ui-sortable">
+                                    <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                         data-uniqid="169e61ff-0788-e783-0823-17d04bef897e">
+                                        <div class="references">
+                                            <div class="name">
+                                                <p class="doc_refer_name"
+                                                   style="font-weight: 700; color: rgb(63, 70, 80); font-size: 13px; line-height: 19.5px;">
+                                                    Nguyễn Hữu B</p>
+                                            </div>
+                                            <div class="details">
+                                                <div class="doc_refer_profession"
+                                                     style="font-size: 13px; line-height: 18px;">Product Manager
+                                                </div>
+                                                <div class="doc_refer_email"
+                                                     style="font-size: 13px; line-height: 18px;">
+                                                    nguyenhuub@gmail.com
+                                                </div>
+                                                <div class="doc_refer_phone"
+                                                     style="font-size: 13px; line-height: 18px;">0909123456
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div id="onecv-projects" class="onecv-block" data-section="projects" data-pos="10">
+                            <div class="options_toolbar">
+                                <div class="tip"></div>
+                                <div class="bt bt-del-block js_delete-block"></div>
+                                <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                            </div>
+                            <section class="section onecv-section">
+                                <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                    <div class="section-title-first title icon-projects">
+                                        <span class="doc_title-projects">Dự án</span>
+                                    </div>
+                                    <span class="after"></span>
+                                </div>
+                                <div class="sortable-projects js_list-container-projects ui-sortable">
+                                    <div class="js_onecv-item ui-sortable-handle" data-pos="1"
+                                         data-uniqid="d2743cbc-02b4-8aa8-a268-4fc8b3705de8">
+                                        <div class="projects">
+                                            <ul>
+                                                <li>Hệ thống Test<br></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div id="onecv-additional" class="onecv-block" data-section="additional" data-pos="11">
+                            <div class="options_toolbar">
+                                <div class="tip"></div>
+                                <div class="bt bt-del-block js_delete-block"></div>
+                                <div class="bt bt-handle    js_sortable-handle ui-sortable-handle"></div>
+                            </div>
+                            <section class="section onecv-section">
+                                <div class="section-title" style="font-size: 16px; line-height: 18px;">
+                                    <div class="section-title-first title icon-additional">
+                                        <span class="doc_title-additional">Thông tin thêm</span>
+                                    </div>
+                                    <span class="after"></span>
+                                </div>
+                                <div class="js_list-container-additional">
+                                    <div class="js_onecv-item" data-pos="1"
+                                         data-uniqid="d44f9aee-c48d-5a7a-878f-69ebd173a0c4">
+                                        <div class="additional">
+                                            <div class="doc_additional"
+                                                 style="font-size: 13px; line-height: 18px;">
+                                                <p>- Có nhiều kỹ năng mềm, vui vẻ hòa đồng với đồng nghiệp.</p>
+                                                <p>- Chăm chỉ, cầu tiến, khả năng teamwork tốt.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

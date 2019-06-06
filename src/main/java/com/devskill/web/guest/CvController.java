@@ -1,63 +1,60 @@
 package com.devskill.web.guest;
 
-import com.devskill.model.PdfFileRequest;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
+import com.devskill.model.PdfFileRequest;
+import com.devskill.resources.ApplicationConfig;
 
 @Controller
 public class CvController {
 
     private final RestTemplate restTemplate;
 
-    private final String pdfServiceUrl;
+    private final ApplicationConfig applicationConfig;
 
     @Autowired
-    CvController(@Value("${pdf.service.url}") String pdfServiceUrl, RestTemplate restTemplate) {
-        this.pdfServiceUrl = pdfServiceUrl;
+    CvController(RestTemplate restTemplate, ApplicationConfig applicationConfig) {
         this.restTemplate = restTemplate;
-    }
-
-    @GetMapping({"/preview-cv/{idCV}"})
-    public void get(HttpServletResponse response) throws UnsupportedEncodingException {
-
-        PdfFileRequest fileRequest = new PdfFileRequest();
-        fileRequest.setFileName("code-complete.pdf");
-        fileRequest.setSourceHtmlUrl("https://code-complete.herokuapp.com/cv-preview");
-
-        byte[] pdfFile = restTemplate.postForObject(pdfServiceUrl,
-                fileRequest, byte[].class);
-        writePdfFileToResponse(pdfFile, fileRequest.getFileName(), response);
+        this.applicationConfig = applicationConfig;
     }
 
     @GetMapping({"/download-cv/{idCV}"})
     public void downloadCV(@PathVariable String idCV, HttpServletResponse response) throws UnsupportedEncodingException {
-
         PdfFileRequest fileRequest = new PdfFileRequest();
         fileRequest.setFileName("code-complete.pdf");
-        fileRequest.setSourceHtmlUrl("https://code-complete.herokuapp.com/cv-preview");
-        byte[] pdfFile = restTemplate.postForObject(pdfServiceUrl,
-                fileRequest, byte[].class);
+        fileRequest.setSourceHtmlUrl("https://devskill.org/cv-detail/" + idCV);
+        byte[] pdfFile = restTemplate.postForObject(applicationConfig.getPdfServiceUrl(),
+          fileRequest, byte[].class);
         writePdfFileToResponse(pdfFile, fileRequest.getFileName(), response);
     }
 
-    @GetMapping({"/cv-preview"})
-    public String preview() {
-        return "guest/cv/green-blur";
+    @GetMapping({"/cv-preview/{idCV}"})
+    public String preview(@PathVariable String idCV) {
+        return "guest/cv/cv-preview";
+    }
+
+    @GetMapping({"/cv-detail/{idCV}"})
+    public String detail(@PathVariable String idCV) {
+        return "guest/cv/cv-detail";
     }
 
     @GetMapping({"/index"})
     public String index() {
-        return "guest/cv/index";
+        return "guest/cv/cv-template";
     }
 
     private void writePdfFileToResponse(byte[] pdfFile, String fileName, HttpServletResponse response) throws UnsupportedEncodingException {
