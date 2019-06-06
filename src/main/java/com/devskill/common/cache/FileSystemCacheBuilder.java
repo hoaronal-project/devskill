@@ -216,8 +216,8 @@ public final class FileSystemCacheBuilder<K, V> {
     @Override
     public String toString() {
         return "FileSystemCacheBuilder{" +
-                "underlyingCacheBuilder=" + underlyingCacheBuilder +
-                ", persistenceDirectory=" + persistenceDirectory +
-                '}';
+          "underlyingCacheBuilder=" + underlyingCacheBuilder +
+          ", persistenceDirectory=" + persistenceDirectory +
+          '}';
     }
 }

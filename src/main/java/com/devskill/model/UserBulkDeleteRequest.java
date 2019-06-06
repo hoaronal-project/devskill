@@ -16,24 +16,24 @@ import java.util.List;
 @AllArgsConstructor
 public class UserBulkDeleteRequest implements Serializable {
 
-	private List<Long> ids;
+    private List<Long> ids;
 
-	public static class Builder  {
+    public static class Builder {
 
-		private List<Long> ids;
+        private List<Long> ids;
 
-		public Builder() {
-		}
+        public Builder() {
+        }
 
-		public Builder ids(List<Long> ids) {
-			this.ids = ids;
-			return this;
-		}
+        public Builder ids(List<Long> ids) {
+            this.ids = ids;
+            return this;
+        }
 
-		public UserBulkDeleteRequest build() {
-			UserBulkDeleteRequest request = new UserBulkDeleteRequest();
-			request.ids = ids;
-			return request;
-		}
-	}
+        public UserBulkDeleteRequest build() {
+            UserBulkDeleteRequest request = new UserBulkDeleteRequest();
+            request.ids = ids;
+            return request;
+        }
+    }
 }

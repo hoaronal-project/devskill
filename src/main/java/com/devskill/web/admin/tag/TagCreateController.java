@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class TagCreateController extends AbstractController {
     ResponseEntity<Response> create(@RequestBody @Valid TagCreateForm form,
                                     BindingResult bindingResult) {
         Map<String, String> errors = null;
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             errors = bindingResult.getFieldErrors().stream()
               .collect(
                 Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)

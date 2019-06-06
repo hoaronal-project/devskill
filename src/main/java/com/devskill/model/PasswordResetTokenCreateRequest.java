@@ -13,6 +13,6 @@ import lombok.ToString;
 @AllArgsConstructor
 public class PasswordResetTokenCreateRequest {
 
-	private String email;
-	private String language;
+    private String email;
+    private String language;
 }

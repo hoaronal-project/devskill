@@ -46,7 +46,7 @@ public class FileSystemPersistingCache<K, V> extends AbstractPersistingCache<K, 
         directory.mkdirs();
         if (!directory.exists() || !directory.isDirectory() || !directory.canRead() || !directory.canWrite()) {
             throw new IllegalArgumentException(String.format("Directory %s cannot be used as a persistence directory",
-                    directory.getAbsolutePath()));
+              directory.getAbsolutePath()));
         }
         return directory;
     }

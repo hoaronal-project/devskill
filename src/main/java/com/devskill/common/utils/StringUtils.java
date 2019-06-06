@@ -163,9 +163,9 @@ public class StringUtils {
             String temp = Normalizer.normalize(str.trim(), Normalizer.Form.NFD);
             Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
             return pattern.matcher(temp).replaceAll("").toLowerCase()
-                    .replaceAll("[^\\p{L}\\p{Z}]","")
-                    .replaceAll(" ", "-")
-                    .replaceAll("đ", "d");
+              .replaceAll("[^\\p{L}\\p{Z}]", "")
+              .replaceAll(" ", "-")
+              .replaceAll("đ", "d");
         } catch (Exception ex) {
             ex.printStackTrace();
         }

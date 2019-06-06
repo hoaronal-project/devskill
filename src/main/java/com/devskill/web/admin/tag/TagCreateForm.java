@@ -3,6 +3,7 @@ package com.devskill.web.admin.tag;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.BeanUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,23 +22,23 @@ import com.devskill.model.TagCreateRequest;
 @AllArgsConstructor
 public class TagCreateForm implements Serializable {
 
-	@NotNull
-	private String name;
+    @NotNull
+    private String name;
 
-	@NotNull
-	private String language;
+    @NotNull
+    private String language;
 
-	public TagCreateRequest buildTagCreateRequest() {
-		TagCreateRequest.Builder builder = new TagCreateRequest.Builder();
-		return builder
-				.name(name)
-				.language(language)
-				.build();
-	}
+    public TagCreateRequest buildTagCreateRequest() {
+        TagCreateRequest.Builder builder = new TagCreateRequest.Builder();
+        return builder
+          .name(name)
+          .language(language)
+          .build();
+    }
 
-	public static TagCreateForm fromDomainObject(Category category) {
-		TagCreateForm form = new TagCreateForm();
-		BeanUtils.copyProperties(category, form);
-		return form;
-	}
+    public static TagCreateForm fromDomainObject(Category category) {
+        TagCreateForm form = new TagCreateForm();
+        BeanUtils.copyProperties(category, form);
+        return form;
+    }
 }

@@ -13,10 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GoogleAnalyticsUpdateRequest {
-	private long blogId;
-	private String trackingId;
-	private String profileId;
-	private Integer customDimensionIndex;
-	private String serviceAccountId;
-	private MultipartFile serviceAccountP12File;
+    private long blogId;
+    private String trackingId;
+    private String profileId;
+    private Integer customDimensionIndex;
+    private String serviceAccountId;
+    private MultipartFile serviceAccountP12File;
 }

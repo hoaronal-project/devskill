@@ -28,7 +28,7 @@ public class PostController {
     @GetMapping("posts")
     public String list(@RequestParam(defaultValue = "") String keyword,
                        @PageableDefault(50) Pageable pageable,
-                       Model model){
+                       Model model) {
         PostSearchRequest request = new PostSearchRequest("vi").withKeyword(keyword);
         Page<Post> posts = postService.getPosts(request, pageable);
         model.addAttribute("listItem", posts.getContent());
@@ -36,9 +36,9 @@ public class PostController {
     }
 
     @GetMapping("post-create")
-    public String newPost(Model model){
+    public String newPost(Model model) {
         List<Tag> tags = tagService.findAll();
-        model.addAttribute("tags",tags);
+        model.addAttribute("tags", tags);
         return "admin/post/create";
     }
 

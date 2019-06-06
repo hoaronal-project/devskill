@@ -13,20 +13,20 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface TagRepository extends JpaRepository<Tag, Long>{
+public interface TagRepository extends JpaRepository<Tag, Long> {
 
-	Tag findOneByIdAndLanguage(Long id, String language);
+    Tag findOneByIdAndLanguage(Long id, String language);
 
-	@Lock(LockModeType.PESSIMISTIC_WRITE)
-	Tag findOneForUpdateByIdAndLanguage(Long id, String language);
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    Tag findOneForUpdateByIdAndLanguage(Long id, String language);
 
-	Tag findOneByNameAndLanguage(String name, String language);
+    Tag findOneByNameAndLanguage(String name, String language);
 
-	@Lock(LockModeType.PESSIMISTIC_WRITE)
-	Tag findOneForUpdateByNameAndLanguage(String name, String language);
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    Tag findOneForUpdateByNameAndLanguage(String name, String language);
 
-	List<Tag> findAllByLanguage(String language);
+    List<Tag> findAllByLanguage(String language);
 
-	@Query("select count(tag.id) from Tag tag where tag.language = :language ")
-	long count(@Param("language") String language);
+    @Query("select count(tag.id) from Tag tag where tag.language = :language ")
+    long count(@Param("language") String language);
 }

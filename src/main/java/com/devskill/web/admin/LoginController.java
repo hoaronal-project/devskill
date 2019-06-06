@@ -25,10 +25,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/_admin")
 public class LoginController {
 
-	@RequestMapping("/login")
-	public String form(HttpServletRequest request) {
-		System.out.println(request.getParameter("fail"));
-		System.out.println();
-		return "admin/login";
-	}
+    @RequestMapping("/login")
+    public String form(HttpServletRequest request) {
+        System.out.println(request.getParameter("fail"));
+        System.out.println();
+        return "admin/login";
+    }
 }

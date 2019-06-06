@@ -16,16 +16,16 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class CustomFieldSearchRequest implements Serializable {
 
-	private String keyword;
-	private String language;
+    private String keyword;
+    private String language;
 
-	public boolean isEmpty() {
-		if (StringUtils.hasText(getKeyword())) {
-			return false;
-		}
-		if (StringUtils.hasText(getLanguage())) {
-			return false;
-		}
-		return true;
-	}
+    public boolean isEmpty() {
+        if (StringUtils.hasText(getKeyword())) {
+            return false;
+        }
+        if (StringUtils.hasText(getLanguage())) {
+            return false;
+        }
+        return true;
+    }
 }

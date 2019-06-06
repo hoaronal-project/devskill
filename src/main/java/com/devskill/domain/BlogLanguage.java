@@ -17,28 +17,28 @@ import javax.persistence.*;
 @DynamicUpdate
 public class BlogLanguage extends DomainObject<Long> {
 
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	@ManyToOne(optional = false)
-	private Blog blog;
+    @ManyToOne(optional = false)
+    private Blog blog;
 
-	@Column(length = 3, nullable = false)
-	private String language;
+    @Column(length = 3, nullable = false)
+    private String language;
 
-	@Lob
-	@Column(length = 300, nullable = false)
-	private String title;
+    @Lob
+    @Column(length = 300, nullable = false)
+    private String title;
 
-	@Override
-	public Long getId() {
-		return id;
-	}
+    @Override
+    public Long getId() {
+        return id;
+    }
 
-	@Override
-	public String print() {
-		return getBlog().getCode() + "-" + getLanguage();
-	}
+    @Override
+    public String print() {
+        return getBlog().getCode() + "-" + getLanguage();
+    }
 
 }

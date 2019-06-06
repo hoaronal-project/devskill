@@ -16,32 +16,32 @@ import java.util.List;
 @AllArgsConstructor
 public class CustomFieldBulkDeleteRequest implements Serializable {
 
-	private List<Long> ids;
-	private String language;
+    private List<Long> ids;
+    private String language;
 
-	public static class Builder  {
+    public static class Builder {
 
-		private List<Long> ids;
-		private String language;
+        private List<Long> ids;
+        private String language;
 
-		public Builder() {
-		}
+        public Builder() {
+        }
 
-		public Builder ids(List<Long> ids) {
-			this.ids = ids;
-			return this;
-		}
+        public Builder ids(List<Long> ids) {
+            this.ids = ids;
+            return this;
+        }
 
-		public Builder language(String language) {
-			this.language = language;
-			return this;
-		}
+        public Builder language(String language) {
+            this.language = language;
+            return this;
+        }
 
-		public CustomFieldBulkDeleteRequest build() {
-			CustomFieldBulkDeleteRequest request = new CustomFieldBulkDeleteRequest();
-			request.ids = ids;
-			request.language = language;
-			return request;
-		}
-	}
+        public CustomFieldBulkDeleteRequest build() {
+            CustomFieldBulkDeleteRequest request = new CustomFieldBulkDeleteRequest();
+            request.ids = ids;
+            request.language = language;
+            return request;
+        }
+    }
 }

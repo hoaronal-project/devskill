@@ -10,5 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, String> {
 
-	PasswordResetToken findOneByToken(@Param("token") String token);
+    PasswordResetToken findOneByToken(@Param("token") String token);
 }

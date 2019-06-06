@@ -48,16 +48,16 @@ public class HomeController extends AbstractController {
     }
 
     @GetMapping({"/test"})
-    public String get(){
+    public String get() {
         return "guest/cv/cv-doan-quang-hoa";
     }
 
     @GetMapping("post/{code}")
-    public String newPost(@PathVariable("code") String code, Model model, HttpServletRequest request){
+    public String newPost(@PathVariable("code") String code, Model model, HttpServletRequest request) {
         try {
             Post post = postService.getPostByCode(code);
-            model.addAttribute("item",post);
-        }catch (Exception e){
+            model.addAttribute("item", post);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "guest/post/detail";

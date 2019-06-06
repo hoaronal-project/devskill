@@ -14,38 +14,38 @@ import java.time.LocalDateTime;
 @Entity
 @ToString
 @EqualsAndHashCode
-@Table(name="user_invitation")
+@Table(name = "user_invitation")
 @DynamicInsert
 @DynamicUpdate
 public class UserInvitation extends DomainObject<String> {
 
-	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name="system-uuid", strategy="uuid2")
-	@Column(length=50)
-	private String token;
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
+    @Column(length = 50)
+    private String token;
 
-	@Column(length=500, nullable=false)
-	private String email;
+    @Column(length = 500, nullable = false)
+    private String email;
 
-	@Lob
-	private String message;
+    @Lob
+    private String message;
 
-	@Column(nullable=false)
-	private LocalDateTime expiredAt;
+    @Column(nullable = false)
+    private LocalDateTime expiredAt;
 
-	@Column(nullable=false)
-	private boolean accepted;
+    @Column(nullable = false)
+    private boolean accepted;
 
-	private LocalDateTime acceptedAt;
+    private LocalDateTime acceptedAt;
 
-	@Override
-	public String getId() {
-		return getToken();
-	}
+    @Override
+    public String getId() {
+        return getToken();
+    }
 
-	@Override
-	public String print() {
-		return getEmail();
-	}
+    @Override
+    public String print() {
+        return getEmail();
+    }
 }

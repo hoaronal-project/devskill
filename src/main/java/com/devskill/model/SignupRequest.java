@@ -16,8 +16,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SignupRequest implements Serializable {
-	private String loginId;
-	private String loginPassword;
-	private PersonalName name;
-	private String email;
+    private String loginId;
+    private String loginPassword;
+    private PersonalName name;
+    private String email;
 }

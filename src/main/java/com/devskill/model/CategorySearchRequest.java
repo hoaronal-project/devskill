@@ -16,16 +16,16 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class CategorySearchRequest implements Serializable {
 
-	private String keyword;
-	private String language;
+    private String keyword;
+    private String language;
 
-	public boolean isEmpty() {
-		if (StringUtils.hasText(getKeyword())) {
-			return false;
-		}
-		if (StringUtils.hasText(getLanguage())) {
-			return false;
-		}
-		return true;
-	}
+    public boolean isEmpty() {
+        if (StringUtils.hasText(getKeyword())) {
+            return false;
+        }
+        if (StringUtils.hasText(getLanguage())) {
+            return false;
+        }
+        return true;
+    }
 }

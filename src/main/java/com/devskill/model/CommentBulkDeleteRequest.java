@@ -16,6 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 public class CommentBulkDeleteRequest implements Serializable {
 
-	private List<Long> ids;
-	private String language;
+    private List<Long> ids;
+    private String language;
 }

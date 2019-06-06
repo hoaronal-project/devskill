@@ -21,7 +21,7 @@ public class SessionAdminInterceptor extends HandlerInterceptorAdapter {
                              HttpServletResponse response, Object handler) throws Exception {
 
         String url = request.getRequestURI();
-        logger.info("Admin Interceptor:",url);
+        logger.info("Admin Interceptor:", url);
         /*LoginSession loginSession = sessionService.getLoginSession(request);
         if(loginSession==null) {
             sessionService.removeLoginCookies(request, response);

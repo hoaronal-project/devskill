@@ -28,7 +28,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public User register(UserCreateForm userCreateForm) {
-        Optional<User> duplicate = userRepository.findOneByEmail(userCreateForm.getEmail());;
+        Optional<User> duplicate = userRepository.findOneByEmail(userCreateForm.getEmail());
+        ;
         if (duplicate.isPresent()) {
             throw new DuplicateEmailException(userCreateForm.getEmail());
         }

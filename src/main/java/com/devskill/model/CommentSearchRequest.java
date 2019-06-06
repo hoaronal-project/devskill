@@ -13,8 +13,8 @@ import lombok.ToString;
 @AllArgsConstructor
 public class CommentSearchRequest {
 
-	private Long postId;
-	private String keyword;
-	private Boolean approved;
-	private String language;
+    private Long postId;
+    private String keyword;
+    private Boolean approved;
+    private String language;
 }

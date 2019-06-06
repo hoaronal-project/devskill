@@ -47,13 +47,13 @@ class RemovalNotifications {
                 return (RemovalNotification<K, V>) constructor.newInstance(key, value, RemovalCause.EXPLICIT);
             } catch (InvocationTargetException e) {
                 throw new IllegalStateException(String.format("Creating an instance of %s for key %s and value %s caused an exception to be thrown",
-                        RemovalNotification.class.getCanonicalName(), key, value), e);
+                  RemovalNotification.class.getCanonicalName(), key, value), e);
             } catch (InstantiationException e) {
                 throw new IllegalStateException(String.format("Could not call %s's constructor for key %s and value %s",
-                        RemovalNotification.class.getCanonicalName(), key, value), e);
+                  RemovalNotification.class.getCanonicalName(), key, value), e);
             } catch (IllegalAccessException e) {
                 throw new IllegalStateException(String.format("Could not access %s's constructor for key %s and value %s",
-                        RemovalNotification.class.getCanonicalName(), key, value), e);
+                  RemovalNotification.class.getCanonicalName(), key, value), e);
             }
         } catch (RuntimeException e) {
             LOGGER.error(e.getMessage(), e);

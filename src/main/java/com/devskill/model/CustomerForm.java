@@ -21,10 +21,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 @AllArgsConstructor
 public class CustomerForm {
 
-    @Size(min=2, max=30)
+    @Size(min = 2, max = 30)
     private String name;
 
-    @NotEmpty @Email
+    @NotEmpty
+    @Email
     private String email;
 
     @NotNull

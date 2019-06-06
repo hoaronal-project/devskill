@@ -15,6 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentBulkUnapproveRequest implements Serializable {
-	private List<Long> ids;
-	private String language;
+    private List<Long> ids;
+    private String language;
 }

@@ -15,6 +15,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class CommentDeleteRequest implements Serializable {
 
-	private long id;
+    private long id;
 }
 

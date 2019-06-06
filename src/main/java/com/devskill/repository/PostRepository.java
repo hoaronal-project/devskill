@@ -12,13 +12,13 @@ import com.devskill.domain.Post;
 
 @Repository
 @Transactional
-public interface PostRepository extends JpaRepository<Post, Long>, PostRepositoryCustom  {
+public interface PostRepository extends JpaRepository<Post, Long>, PostRepositoryCustom {
 
-	List<Post> findByCodeIn(List<String> codes);
+    List<Post> findByCodeIn(List<String> codes);
 
-	@Query("select post from Post post where post.code = :code ")
-	Post findOneByCode(@Param("code") String code);
+    @Query("select post from Post post where post.code = :code ")
+    Post findOneByCode(@Param("code") String code);
 
-	@Query("select count(post.id) from Post post where post.language = :language ")
-	long count(@Param("language") String language);
+    @Query("select count(post.id) from Post post where post.language = :language ")
+    long count(@Param("language") String language);
 }

@@ -29,7 +29,7 @@ public class Application {
     }
 
     @Bean
-    public Cache<Object, Object> cache(){
+    public Cache<Object, Object> cache() {
         return FileSystemCacheBuilder.newBuilder()
           .maximumSize(1L)
           .build();

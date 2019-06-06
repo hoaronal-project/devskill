@@ -17,7 +17,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldMatch.List({
-        @FieldMatch(first = "loginPassword", second = "reLoginPassword", message = "The password fields must match")
+  @FieldMatch(first = "loginPassword", second = "reLoginPassword", message = "The password fields must match")
 })
 public class UserCreateForm implements Serializable {
 

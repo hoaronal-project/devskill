@@ -9,6 +9,7 @@ public class CoreResponse implements Serializable {
     private Integer responseCode;
     private Object paramObject;
     private Map<String, String> errorMessages;
+
     public CoreResponse() {
     }
 

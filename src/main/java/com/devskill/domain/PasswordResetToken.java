@@ -20,28 +20,28 @@ import java.time.LocalDateTime;
 @DynamicUpdate
 public class PasswordResetToken extends DomainObject<String> {
 
-	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
-	@Column(length = 50)
-	private String token;
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
+    @Column(length = 50)
+    private String token;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	private User user;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    private User user;
 
-	@Column(length = 200, nullable = false)
-	private String email;
+    @Column(length = 200, nullable = false)
+    private String email;
 
-	@Column(nullable = false)
-	private LocalDateTime expiredAt;
+    @Column(nullable = false)
+    private LocalDateTime expiredAt;
 
-	@Override
-	public String getId() {
-		return getToken();
-	}
+    @Override
+    public String getId() {
+        return getToken();
+    }
 
-	@Override
-	public String print() {
-		return getEmail() + " " + getToken();
-	}
+    @Override
+    public String print() {
+        return getEmail() + " " + getToken();
+    }
 }

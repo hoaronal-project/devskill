@@ -18,10 +18,10 @@ import java.util.Set;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomResponse {
-	private int resultCode;
-	private Long id;
-	private Map<String, String> listMsg;
-	private Set<CustomError> errors;
-	private Object item;
-	private List listItem;
+    private int resultCode;
+    private Long id;
+    private Map<String, String> listMsg;
+    private Set<CustomError> errors;
+    private Object item;
+    private List listItem;
 }

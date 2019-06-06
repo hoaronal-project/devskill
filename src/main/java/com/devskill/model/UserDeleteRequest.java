@@ -14,24 +14,24 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDeleteRequest implements Serializable {
-	private Long id;
+    private Long id;
 
-	public static class Builder  {
+    public static class Builder {
 
-		private Long id;
+        private Long id;
 
-		public Builder() {
-		}
+        public Builder() {
+        }
 
-		public Builder id(Long id) {
-			this.id = id;
-			return this;
-		}
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
 
-		public UserDeleteRequest build() {
-			UserDeleteRequest request = new UserDeleteRequest();
-			request.id = id;
-			return request;
-		}
-	}
+        public UserDeleteRequest build() {
+            UserDeleteRequest request = new UserDeleteRequest();
+            request.id = id;
+            return request;
+        }
+    }
 }

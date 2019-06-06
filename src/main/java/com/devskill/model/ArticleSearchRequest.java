@@ -21,46 +21,46 @@ import java.util.Collection;
 @AllArgsConstructor
 public class ArticleSearchRequest implements Serializable {
 
-	private String keyword;
-	private LocalDateTime dateFrom;
-	private LocalDateTime dateTo;
-	private Collection<Long> categoryIds;
-	private Collection<String> categoryCodes;
-	private Collection<Long> tagIds;
-	private Collection<String> tagNames;
-	private MultiValueMap<String, Object> customFields;
-	private Long authorId;
-	private Post.Status status;
-	private String language;
+    private String keyword;
+    private LocalDateTime dateFrom;
+    private LocalDateTime dateTo;
+    private Collection<Long> categoryIds;
+    private Collection<String> categoryCodes;
+    private Collection<Long> tagIds;
+    private Collection<String> tagNames;
+    private MultiValueMap<String, Object> customFields;
+    private Long authorId;
+    private Post.Status status;
+    private String language;
 
-	public boolean isEmpty() {
-		if (StringUtils.hasText(getKeyword())) {
-			return false;
-		}
-		if (getDateFrom() != null) {
-			return false;
-		}
-		if (getDateTo() != null) {
-			return false;
-		}
-		if (!CollectionUtils.isEmpty(getCategoryIds())) {
-			return false;
-		}
-		if (!CollectionUtils.isEmpty(getTagNames())) {
-			return false;
-		}
-		if (!CollectionUtils.isEmpty(getCustomFields())) {
-			return false;
-		}
-		if (getAuthorId() != null) {
-			return false;
-		}
-		if (getStatus() != null) {
-			return false;
-		}
-		if (StringUtils.hasText(getLanguage())) {
-			return false;
-		}
-		return true;
-	}
+    public boolean isEmpty() {
+        if (StringUtils.hasText(getKeyword())) {
+            return false;
+        }
+        if (getDateFrom() != null) {
+            return false;
+        }
+        if (getDateTo() != null) {
+            return false;
+        }
+        if (!CollectionUtils.isEmpty(getCategoryIds())) {
+            return false;
+        }
+        if (!CollectionUtils.isEmpty(getTagNames())) {
+            return false;
+        }
+        if (!CollectionUtils.isEmpty(getCustomFields())) {
+            return false;
+        }
+        if (getAuthorId() != null) {
+            return false;
+        }
+        if (getStatus() != null) {
+            return false;
+        }
+        if (StringUtils.hasText(getLanguage())) {
+            return false;
+        }
+        return true;
+    }
 }

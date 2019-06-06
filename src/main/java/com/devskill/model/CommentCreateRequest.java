@@ -17,11 +17,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CommentCreateRequest implements Serializable {
 
-	private BlogLanguage blogLanguage;
-	private long postId;
-	private long authorId;
-	private LocalDateTime date;
-	private String content;
-	private boolean approved;
+    private BlogLanguage blogLanguage;
+    private long postId;
+    private long authorId;
+    private LocalDateTime date;
+    private String content;
+    private boolean approved;
 }
 

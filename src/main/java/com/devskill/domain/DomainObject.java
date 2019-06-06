@@ -15,19 +15,19 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class DomainObject<ID extends Serializable> implements Serializable {
 
-	@Column(nullable = false)
-	private LocalDateTime createdAt = LocalDateTime.now();
+    @Column(nullable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-	@Column(length = 100)
-	private String createdBy;
+    @Column(length = 100)
+    private String createdBy;
 
-	@Column(nullable = false)
-	private LocalDateTime updatedAt = LocalDateTime.now();
+    @Column(nullable = false)
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
-	@Column(length = 100)
-	private String updatedBy;
+    @Column(length = 100)
+    private String updatedBy;
 
-	public abstract ID getId();
+    public abstract ID getId();
 
-	public abstract String print();
+    public abstract String print();
 }

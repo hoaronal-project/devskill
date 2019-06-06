@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Getter
 @Component
 public class ApplicationConfig {
-	@Value("${spring.thymeleaf.cache}")
-	private boolean thymeleafCache;
+    @Value("${spring.thymeleaf.cache}")
+    private boolean thymeleafCache;
 
-	@Value("${pdf.service.url}")
-	private String pdfServiceUrl;
+    @Value("${pdf.service.url}")
+    private String pdfServiceUrl;
 }

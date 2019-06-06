@@ -11,9 +11,9 @@ import javax.persistence.LockModeType;
 @Repository
 @Transactional
 public interface UserInvitationRepository extends JpaRepository<UserInvitation, String> {
-	
-	UserInvitation findOneByToken(String token);
-	
-	@Lock(LockModeType.PESSIMISTIC_WRITE)
-	UserInvitation findOneForUpdateByToken(String token);
+
+    UserInvitation findOneByToken(String token);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    UserInvitation findOneForUpdateByToken(String token);
 }

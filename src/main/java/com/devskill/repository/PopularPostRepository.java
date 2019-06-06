@@ -15,9 +15,9 @@ import java.util.SortedSet;
 @Transactional
 public interface PopularPostRepository extends JpaRepository<PopularPost, Long> {
 
-	SortedSet<PopularPost> findAll(Specification<PopularPost> spec);
+    SortedSet<PopularPost> findAll(Specification<PopularPost> spec);
 
-	@Modifying
-	@Query("delete from PopularPost popularPost where popularPost.language = :language and popularPost.type = :type")
-	void deleteByType(@Param("language") String language, @Param("type") PopularPost.Type type);
+    @Modifying
+    @Query("delete from PopularPost popularPost where popularPost.language = :language and popularPost.type = :type")
+    void deleteByType(@Param("language") String language, @Param("type") PopularPost.Type type);
 }

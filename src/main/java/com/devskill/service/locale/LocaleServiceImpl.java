@@ -9,10 +9,10 @@ import java.util.Locale;
 @Service
 @RequiredArgsConstructor
 public class LocaleServiceImpl implements LocaleService {
-	private final ServletRequest request;
+    private final ServletRequest request;
 
-	@Override
-	public Locale getLocale() {
-		return request.getLocale();
-	}
+    @Override
+    public Locale getLocale() {
+        return request.getLocale();
+    }
 }

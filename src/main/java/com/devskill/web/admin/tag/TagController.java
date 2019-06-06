@@ -19,14 +19,14 @@ public class TagController extends AbstractController {
     private TagService tagService;
 
     @GetMapping("tags")
-    public String list(Model model){
+    public String list(Model model) {
         List<Tag> tags = tagService.findAll();
-        model.addAttribute("listItem",tags);
+        model.addAttribute("listItem", tags);
         return "admin/tag/list";
     }
 
     @GetMapping("tag-create")
-    public String createView(){
+    public String createView() {
         return "admin/tag/create";
     }
 }

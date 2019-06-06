@@ -15,6 +15,6 @@ import lombok.ToString;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomError {
 
-	private Integer type;
-	private Integer field;
+    private Integer type;
+    private Integer field;
 }

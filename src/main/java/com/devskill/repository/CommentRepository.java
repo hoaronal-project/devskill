@@ -13,10 +13,10 @@ import javax.persistence.LockModeType;
 @Transactional
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-	@EntityGraph(value = Comment.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
-	Comment findOneById(Long id);
+    @EntityGraph(value = Comment.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
+    Comment findOneById(Long id);
 
-	@EntityGraph(value = Comment.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
-	@Lock(LockModeType.PESSIMISTIC_WRITE)
-	Comment findOneForUpdateById(Long id);
+    @EntityGraph(value = Comment.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    Comment findOneForUpdateById(Long id);
 }

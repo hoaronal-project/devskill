@@ -30,11 +30,11 @@ public class PostCreateController extends AbstractController {
     public ResponseEntity<Response> newPost(@RequestBody @Valid PostCreateForm form,
                                             BindingResult bindingResult, Model model) throws IOException {
         Map<String, String> errors = null;
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             errors = bindingResult.getFieldErrors().stream()
-                    .collect(
-                            Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
-                    );
+              .collect(
+                Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
+              );
             return responseUtil.errorResponse(form, errors);
         }
         return responseUtil.successResponse(postService.add(form.convert(form)), errors);

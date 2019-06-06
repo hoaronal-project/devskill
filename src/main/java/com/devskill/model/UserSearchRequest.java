@@ -18,16 +18,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserSearchRequest implements Serializable {
-	private String keyword;
-	private List<User.Role> roles;
+    private String keyword;
+    private List<User.Role> roles;
 
-	public boolean isEmpty() {
-		if (StringUtils.hasText(getKeyword())) {
-			return false;
-		}
-		if (!CollectionUtils.isEmpty(getRoles())) {
-			return false;
-		}
-		return true;
-	}
+    public boolean isEmpty() {
+        if (StringUtils.hasText(getKeyword())) {
+            return false;
+        }
+        if (!CollectionUtils.isEmpty(getRoles())) {
+            return false;
+        }
+        return true;
+    }
 }

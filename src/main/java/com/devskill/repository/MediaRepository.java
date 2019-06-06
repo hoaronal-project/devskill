@@ -12,8 +12,8 @@ import javax.persistence.LockModeType;
 @Transactional
 public interface MediaRepository extends JpaRepository<Media, String> {
 
-	Media findOneById(String id);
+    Media findOneById(String id);
 
-	@Lock(LockModeType.PESSIMISTIC_WRITE)
-	Media findOneForUpdateById(String id);
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    Media findOneForUpdateById(String id);
 }

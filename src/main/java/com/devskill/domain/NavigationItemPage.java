@@ -19,11 +19,11 @@ import javax.persistence.OneToOne;
 @DynamicUpdate
 public class NavigationItemPage extends NavigationItem {
 
-	@OneToOne
-	private Page page;
+    @OneToOne
+    private Page page;
 
-	@Override
-	public String print() {
-		return getPage().getTitle();
-	}
+    @Override
+    public String print() {
+        return getPage().getTitle();
+    }
 }

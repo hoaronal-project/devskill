@@ -22,7 +22,7 @@ import javax.mail.internet.MimeMessage;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class MailServiceImpl implements MailService{
+public class MailServiceImpl implements MailService {
 
     private final JavaMailSender mailSender;
     private final ApplicationConfig applicationConfig;
@@ -47,7 +47,7 @@ public class MailServiceImpl implements MailService{
             message.setSubject("Welcome new member.");
             message.setFrom("Devskill.org");
             message.setTo(toAddress);
-            message.setText(getMailText(TEMPLATE_REGISTER, params), true );
+            message.setText(getMailText(TEMPLATE_REGISTER, params), true);
 
             // Send email
             this.mailSender.send(mimeMessage);

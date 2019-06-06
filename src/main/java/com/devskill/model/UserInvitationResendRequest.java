@@ -15,24 +15,24 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class UserInvitationResendRequest implements Serializable {
 
-	private String token;
+    private String token;
 
-	public static class Builder  {
+    public static class Builder {
 
-		private String token;
+        private String token;
 
-		public Builder() {
-		}
+        public Builder() {
+        }
 
-		public Builder token(String token) {
-			this.token = token;
-			return this;
-		}
+        public Builder token(String token) {
+            this.token = token;
+            return this;
+        }
 
-		public UserInvitationResendRequest build() {
-			UserInvitationResendRequest request = new UserInvitationResendRequest();
-			request.token = token;
-			return request;
-		}
-	}
+        public UserInvitationResendRequest build() {
+            UserInvitationResendRequest request = new UserInvitationResendRequest();
+            request.token = token;
+            return request;
+        }
+    }
 }

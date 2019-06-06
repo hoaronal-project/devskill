@@ -15,7 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class CommentUpdateRequest implements Serializable {
 
-	private long id;
-	private String content;
+    private long id;
+    private String content;
 }
 

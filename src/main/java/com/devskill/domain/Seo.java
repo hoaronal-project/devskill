@@ -15,14 +15,14 @@ import java.io.Serializable;
 @Embeddable
 public class Seo implements Serializable {
 
-	@Column(name = "seo_title", length = 500)
-	private String title;
+    @Column(name = "seo_title", length = 500)
+    private String title;
 
-	@Column(name = "seo_description")
-	@Lob
-	private String description;
+    @Column(name = "seo_description")
+    @Lob
+    private String description;
 
-	@Column(name = "seo_keywords")
-	@Lob
-	private String keywords;
+    @Column(name = "seo_keywords")
+    @Lob
+    private String keywords;
 }

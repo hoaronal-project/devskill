@@ -19,11 +19,11 @@ import javax.persistence.OneToOne;
 @DynamicUpdate
 public class NavigationItemCategory extends NavigationItem {
 
-	@OneToOne
-	private Category category;
+    @OneToOne
+    private Category category;
 
-	@Override
-	public String print() {
-		return getCategory().getName();
-	}
+    @Override
+    public String print() {
+        return getCategory().getName();
+    }
 }

@@ -19,23 +19,23 @@ import java.util.Optional;
 @Transactional
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	//	@EntityGraph(value = User.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
-	User findOneById(Long id);
+    //	@EntityGraph(value = User.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
+    User findOneById(Long id);
 
-	//	@EntityGraph(value = User.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
-	@Lock(LockModeType.PESSIMISTIC_WRITE)
-	User findOneForUpdateById(Long id);
+    //	@EntityGraph(value = User.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    User findOneForUpdateById(Long id);
 
-	//	@EntityGraph(value = User.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
-	User findOneByLoginId(String loginId);
+    //	@EntityGraph(value = User.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
+    User findOneByLoginId(String loginId);
 
-	//	@EntityGraph(value = User.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
-	Optional<User> findOneByEmail(String email);
+    //	@EntityGraph(value = User.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
+    Optional<User> findOneByEmail(String email);
 
-	//	@EntityGraph(value = User.SHALLOW_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
-	List<User> findAllByIdIn(Collection<Long> ids);
+    //	@EntityGraph(value = User.SHALLOW_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
+    List<User> findAllByIdIn(Collection<Long> ids);
 
-	@Modifying
-	@Query("update User set lastLoginTime = :lastLoginTime where loginId = :loginId ")
-	int updateLastLoginTime(@Param("loginId") String loginId, @Param("lastLoginTime") Date lastLoginTime);
+    @Modifying
+    @Query("update User set lastLoginTime = :lastLoginTime where loginId = :loginId ")
+    int updateLastLoginTime(@Param("loginId") String loginId, @Param("lastLoginTime") Date lastLoginTime);
 }

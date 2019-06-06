@@ -12,7 +12,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PasswordUpdateRequest {
-	private long userId;
-	private String password;
-	private String language;
+    private long userId;
+    private String password;
+    private String language;
 }

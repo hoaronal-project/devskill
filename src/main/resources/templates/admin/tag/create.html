@@ -13,7 +13,8 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name" class="control-label mb-1">Name tag</label>
-                                    <input id="name" name="name"  type="text" class="form-control" placeholder="Tag name ">
+                                    <input id="name" name="name" type="text" class="form-control"
+                                           placeholder="Tag name ">
                                 </div>
                                 <button class="btn btn-primary" id="save-tag">Create</button>
                             </div>
@@ -39,17 +40,17 @@
             } else {
                 protocol = 'https://'
             }
-            if(port !== null && port !== '') {
-                url = protocol + window.location.hostname + ':' + window.location.port ;
+            if (port !== null && port !== '') {
+                url = protocol + window.location.hostname + ':' + window.location.port;
             } else {
                 url = protocol + window.location.hostname;
             }
             $.ajax({
-                type    : 'POST',
-                url     : url + "/_admin/tag",
-                async   : 'true',
+                type: 'POST',
+                url: url + "/_admin/tag",
+                async: 'true',
                 data: JSON.stringify(tagJson),
-                contentType : 'application/json',
+                contentType: 'application/json',
                 dataType: "json",
                 error: function (request, status, error) {
 

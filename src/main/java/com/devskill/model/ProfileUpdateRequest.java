@@ -14,8 +14,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProfileUpdateRequest {
-	private long userId;
-	private String email;
-	private String loginId;
-	private PersonalName name;
+    private long userId;
+    private String email;
+    private String loginId;
+    private PersonalName name;
 }

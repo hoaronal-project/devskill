@@ -12,7 +12,7 @@ import javax.validation.Payload;
 
 @Documented
 @Constraint(validatedBy = PhoneValidator.class)
-@Target( { ElementType.METHOD, ElementType.FIELD })
+@Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Phone {
 

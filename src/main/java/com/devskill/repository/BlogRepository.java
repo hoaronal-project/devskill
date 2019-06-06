@@ -13,10 +13,10 @@ import javax.persistence.LockModeType;
 @Transactional
 public interface BlogRepository extends JpaRepository<Blog, Long> {
 
-	@EntityGraph(value = Blog.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
-	Blog findOneById(Long id);
+    @EntityGraph(value = Blog.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
+    Blog findOneById(Long id);
 
-	@EntityGraph(value = Blog.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
-	@Lock(LockModeType.PESSIMISTIC_WRITE)
-	Blog findOneForUpdateById(Long id);
+    @EntityGraph(value = Blog.DEEP_GRAPH_NAME, type = EntityGraph.EntityGraphType.FETCH)
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    Blog findOneForUpdateById(Long id);
 }

@@ -14,10 +14,10 @@ public class SpiderServiceImpl implements SpiderService {
     @Override
     public void crawl(String url, PageProcessor pageProcessor) {
         Spider.create(pageProcessor)
-                .addUrl(url)
-                //.setScheduler(new FileCacheQueueScheduler("/home/hoaronal/project/logs"))
-                //.addPipeline(pipeline)
-                .thread(5)
-                .run();
+          .addUrl(url)
+          //.setScheduler(new FileCacheQueueScheduler("/home/hoaronal/project/logs"))
+          //.addPipeline(pipeline)
+          .thread(5)
+          .run();
     }
 }

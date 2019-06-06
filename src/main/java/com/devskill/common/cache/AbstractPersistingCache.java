@@ -39,8 +39,8 @@ public abstract class AbstractPersistingCache<K, V> implements Cache<K, V> {
 
     private LoadingCache<K, V> makeCache(CacheBuilder<Object, Object> cacheBuilder) {
         return cacheBuilder
-                .removalListener(new PersistingRemovalListener())
-                .build(new PersistedStateCacheLoader());
+          .removalListener(new PersistingRemovalListener())
+          .build(new PersistedStateCacheLoader());
     }
 
     private class PersistingRemovalListener implements RemovalListener<K, V> {
@@ -51,7 +51,7 @@ public abstract class AbstractPersistingCache<K, V> implements Cache<K, V> {
                     persistValue(notification.getKey(), notification.getValue());
                 } catch (IOException e) {
                     LOGGER.warn(String.format("Could not persist value %s to key %s",
-                            notification.getKey(), notification.getValue()), e);
+                      notification.getKey(), notification.getValue()), e);
                 }
             } else if (removalListener != null) {
                 removalListener.onRemoval(notification);
@@ -106,7 +106,7 @@ public abstract class AbstractPersistingCache<K, V> implements Cache<K, V> {
     protected boolean isPersistenceRelevant(RemovalCause removalCause) {
         // Note: RemovalCause#wasEvicted is package private
         return removalCause != RemovalCause.EXPLICIT
-                && removalCause != RemovalCause.REPLACED;
+          && removalCause != RemovalCause.REPLACED;
     }
 
     protected LoadingCache<K, V> getUnderlyingCache() {

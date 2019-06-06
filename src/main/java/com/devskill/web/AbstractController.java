@@ -30,7 +30,7 @@ public abstract class AbstractController {
         model.addAttribute("tags", tags);
     }
 
-    public AuthorizedUser getAuthorizedUser(){
+    public AuthorizedUser getAuthorizedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         AuthorizedUser authorizedUser = null;
         if (authentication != null && authentication.getPrincipal() instanceof AuthorizedUser) {

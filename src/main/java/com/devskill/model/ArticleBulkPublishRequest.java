@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticleBulkPublishRequest implements Serializable {
-	private List<Long> ids;
-	private LocalDateTime date;
-	private String language;
+    private List<Long> ids;
+    private LocalDateTime date;
+    private String language;
 }

@@ -104,8 +104,8 @@ public class FuniSpiderProcessor implements PageProcessor {
         for (Iterator iter = pagination.iterator(); iter.hasNext(); ) {
             String url = (String) iter.next();
             if (url.indexOf("detail.htm") != -1 || url.indexOf("house.htm") != -1 || url.indexOf("consult.htm") != -1
-                    || url.indexOf("map.htm") != -1 || url.indexOf("photo") != -1 || url.indexOf("news.htm") != -1
-                    || url.indexOf("guide.htm") != -1 || url.indexOf("news_official.htm") != -1) {
+              || url.indexOf("map.htm") != -1 || url.indexOf("photo") != -1 || url.indexOf("news.htm") != -1
+              || url.indexOf("guide.htm") != -1 || url.indexOf("news_official.htm") != -1) {
                 iter.remove();
             }
         }

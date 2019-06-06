@@ -20,7 +20,7 @@ public class ProfileController {
     @PostMapping({"/note"})
     public String register(@RequestParam String email, BindingResult result) {
 
-        if(StringUtils.isBlank(email)){
+        if (StringUtils.isBlank(email)) {
         }
         return "guest/profile/note";
     }

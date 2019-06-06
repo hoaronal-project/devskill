@@ -17,7 +17,6 @@ public class SpiderSchedule {
     private final NewestProcessor postProcessor;
 
 
-
     @Scheduled(cron = "0 0/1 * 1/1 * ?")
     public void crawlViblo() {
         spiderService.crawl("https://viblo.asia/newest", postProcessor);

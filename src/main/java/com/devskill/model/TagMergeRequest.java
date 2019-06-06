@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TagMergeRequest {
-	private List<Long> ids;
-	private String name;
-	private String language;
+    private List<Long> ids;
+    private String name;
+    private String language;
 }

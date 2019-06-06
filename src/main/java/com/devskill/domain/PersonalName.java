@@ -14,14 +14,15 @@ import java.io.Serializable;
 @Embeddable
 public class PersonalName implements Serializable {
 
-	private String firstName;
+    private String firstName;
 
-	private String lastName;
+    private String lastName;
 
-	public PersonalName() {}
+    public PersonalName() {
+    }
 
-	public PersonalName(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
+    public PersonalName(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

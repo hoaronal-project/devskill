@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DashboardController {
 
     @GetMapping
-    public String dashboard(Model model){
+    public String dashboard(Model model) {
         return "admin/index";
     }
 
     @PostMapping("dologin")
-    public String dologin(Model model, @RequestParam String email, @RequestParam String password){
+    public String dologin(Model model, @RequestParam String email, @RequestParam String password) {
 
         System.out.println(email);
         System.out.println(password);

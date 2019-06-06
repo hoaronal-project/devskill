@@ -19,9 +19,9 @@ public class PostInterceptor implements HandlerInterceptor {
     // Called after handler method request completion, before rendering the view
     @Override
     public void postHandle(HttpServletRequest req, HttpServletResponse res,
-                           Object handler, ModelAndView model)  throws Exception {
+                           Object handler, ModelAndView model) throws Exception {
         System.out.println("Called after handler method request completion,"
-                + " before rendering the view");
+          + " before rendering the view");
 
         model.addObject("lname", "Brown");
     }
@@ -29,7 +29,7 @@ public class PostInterceptor implements HandlerInterceptor {
     // Called after rendering the view
     @Override
     public void afterCompletion(HttpServletRequest req, HttpServletResponse res,
-                                Object handler, Exception ex)  throws Exception {
+                                Object handler, Exception ex) throws Exception {
         System.out.println("Called after rendering the view");
     }
 }
