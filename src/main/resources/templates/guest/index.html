@@ -19,6 +19,8 @@
                         </div>
                         <div class="latest-post-wrap">
                             <h4 class="cat-title">Bài viết mới</h4>
+                              
+                              <h4 class="cat-title" th:utext="${clientIP}"></h4>
                             <div class="loop" th:each="item,itrStat : ${listItem}">
                                 <div class="single-latest-post row align-items-center">
                                     <div class="col-lg-5 post-left">
